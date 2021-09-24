@@ -1,0 +1,20 @@
+
+html
+	head
+		title Login Page
+body
+	include 
+    public /partials/header
+
+	div#main
+		h1 Login
+			form(method='POST' action='/login')
+				p #{alert}
+				label(for ='username') Username:
+				input(type = 'text', name = 'username', required=true)
+				br
+				label(for ='password') Password:
+				input(type = 'password', name = 'password', required=true)
+				br
+				input(type = 'submit', name='submit',value='submit')
+				br
