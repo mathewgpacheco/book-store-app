@@ -1,4 +1,7 @@
+require('dotenv').config();
 const User = require('../models/UserModel');
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 function getRegister(req,res,next){
     res.render('../public/register.pug');
@@ -17,6 +20,7 @@ function register(req,res,next){
         }
         if(!result){
             const user = new User({
+                _id: mongoose.Types.ObjectId(),
                 username: username,
                 password: password
             })
@@ -47,6 +51,12 @@ function login(req,res,next){
                     return res.redirect('/');
                 }
                 console.log('succiess');
+                let user = {
+                    _id: result._id,
+                    username: result.username
+                }
+                const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET);
+                res.status(200).send({message: "Signed in", token: token})
                 return res.redirect('/');
             })
         }

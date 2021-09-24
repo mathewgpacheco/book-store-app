@@ -3,6 +3,9 @@ const  Schema = mongoose.Schema;
 const bcrpyt = require('bcrypt');
 
 const userSchema = new Schema({
+    _id: {
+        type: mongoose.Schema.Types.ObjectId
+    },
     username: {
         type: String,
         unique: true,
