@@ -1,13 +1,13 @@
 
 html
 	head
-		title Login Page
+		title Register Page
 body
 	include ../public/partials/header
 
 	div#main
-		h1 Login
-			form(method='POST' action='/login')
+		h1 Register
+			form(method='POST' action='/register')
 				p #{alert}
 				label(for ='username') Username:
 				input(type = 'text', name = 'username', required=true)

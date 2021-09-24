@@ -1,12 +1,10 @@
 let express= require('express')
 let router = express.Router()
 
-//load other routers here
-router.use(require(__dirname +'/users.js'))
+const indexController = require('../controllers/index');
 
-//home page
-router.get('/',(req,res)=>{
-    res.render('../public/index.pug');
-})
+
+//default routes
+router.get('/', indexController.home);
 
 module.exports = router;
