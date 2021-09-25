@@ -55,8 +55,11 @@ function login(req,res,next){
                     _id: result._id,
                     username: result.username
                 }
-                const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET);
-                res.status(200).send({message: "Signed in", token: token})
+                const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,
+                    {
+                        expiresIn: '1h'
+                    });
+                req.session.token = token;
                 return res.redirect('/');
             })
         }
@@ -71,10 +74,18 @@ function logout(req,res,next){
 
 }
 
-
+function dashboard(req,res,next){
+    let user = req.user;
+    User
+    .findOne({_id:user._id})
+    .then(result =>{
+        return res.render('../public/dashboard.pug', {name: result.username});
+    })
+}
 module.exports = {
     getRegister,
     register,
     login,
-    logout
+    logout,
+    dashboard
 }
