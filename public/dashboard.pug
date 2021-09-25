@@ -8,3 +8,5 @@ body
 	div#main
 		h1 Hello, #{name}
 				br
+		form(method='POST' action='/user/logout')
+			input(type='submit' name='submit' value='Logout')

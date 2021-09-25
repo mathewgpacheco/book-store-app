@@ -27,7 +27,18 @@ function register(req,res,next){
 
             user.save();
             console.log('user created');
-            return res.redirect('/');
+            let usr = {
+                _id: user._id,
+                username: user.username
+            }
+            console.log('in register: ' +   usr.username);
+            const token = jwt.sign(usr,
+                process.env.ACCESS_TOKEN_SECRET,
+                {
+                    expiresIn: '1h'
+                });
+            req.session.token = token;
+            return res.redirect('/user/dashboard');
         }
     })
 
@@ -60,7 +71,7 @@ function login(req,res,next){
                         expiresIn: '1h'
                     });
                 req.session.token = token;
-                return res.redirect('/');
+                return res.redirect('/user/dashboard');
             })
         }
         else {
@@ -70,15 +81,23 @@ function login(req,res,next){
 }
 
 function logout(req,res,next){
-
+    req.session.destroy((err)=>{
+        if(err) {
+            throw err;
+        }
+        return res.redirect('/');
+    })
 
 }
 
 function dashboard(req,res,next){
     let user = req.user;
+    console.log('dashboard: ' +user.username);
     User
-    .findOne({_id:user._id})
+    .findOne({username:user.username})
+    .exec()
     .then(result =>{
+        console.log(result);
         return res.render('../public/dashboard.pug', {name: result.username});
     })
 }

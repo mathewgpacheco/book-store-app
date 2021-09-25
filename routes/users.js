@@ -7,6 +7,7 @@ const userMiddleware = require('../middleware/user');
 router.get('/register',userController.getRegister);
 router.post('/register', userController.register);
 router.post('/login', userController.login);
-router.get('/secret', userMiddleware.authenticateToken, userController.dashboard);
+router.post('/logout',userController.logout);
+router.get('/dashboard', userMiddleware.authenticateToken, userController.dashboard);
 
 module.exports = router;

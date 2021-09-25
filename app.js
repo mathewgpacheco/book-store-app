@@ -24,6 +24,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: store,
+    sameSite: 'strict',
+    httpOnly: true
 }))
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
