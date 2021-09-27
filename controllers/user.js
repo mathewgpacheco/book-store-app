@@ -94,7 +94,7 @@ function dashboard(req,res,next){
     let user = req.user;
     console.log('dashboard: ' +user.username);
     User
-    .findOne({username:user.username})
+    .findOne({_id:user._id})
     .exec()
     .then(result =>{
         console.log(result);

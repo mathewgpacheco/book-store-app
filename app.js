@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 
 const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/users')
+const crawler = require('./crawler');
 
 
 mongoose.connect('DB_URI=mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/store?retryWrites=true&w=majority', {useUnifiedTopology:true},{autoIndex: false});
@@ -21,14 +22,25 @@ const store = new MongoDBStore({
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     store: store,
     sameSite: 'strict',
     httpOnly: true
-}))
+}));
+
+
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
 
-app.listen(port);
-console.log("Server listening at: " + port);
+crawler.initCrawler(); 
+
+function init(){
+  app.listen(port);
+  console.log("Server listening at: " + port);
+}
+
+
+module.exports = {
+  init
+}
