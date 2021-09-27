@@ -18,6 +18,9 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
+    link: {
+        type: String
+    },
     reviews: {
         type: [Number],
     }

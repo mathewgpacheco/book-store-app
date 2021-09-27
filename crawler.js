@@ -20,6 +20,8 @@ function initCrawler(cb){
                 const title = $(book).find('h3 a').text();
                 const price = ($(book).find('.product_price .price_color').text()).replace(/[^0-9.]/g, '');
                 const link =  $(book).find('h3 a ').attr('href');
+
+
     
                 Product
                 .create({
