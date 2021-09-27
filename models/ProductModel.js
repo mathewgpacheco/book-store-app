@@ -8,13 +8,15 @@ const productSchema = new Schema({
     },
     title: {
         type: String,
+        unique: true,
         required: true,
     },
     stock: {
         type: Number,
     },
     price: {
-        type: Number
+        type: Number,
+        default: 0
     },
     reviews: {
         type: [Number],
