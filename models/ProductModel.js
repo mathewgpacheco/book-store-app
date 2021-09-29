@@ -8,8 +8,9 @@ const productSchema = new Schema({
     },
     title: {
         type: String,
-        unique: true,
         required: true,
+        unique: true
+        
     },
     stock: {
         type: Number,
@@ -17,6 +18,9 @@ const productSchema = new Schema({
     price: {
         type: Number,
         default: 0
+    },
+    imgPath: {
+        type: String
     },
     link: {
         type: String
