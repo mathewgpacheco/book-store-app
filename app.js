@@ -40,8 +40,6 @@ crawler.initCrawler(function(err){
   app.listen(port);
   console.log("Server listening at: " + port);
 })
-app.listen(port);
-console.log("Server listening at: " + port);
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
 app.use('/products/', productRoutes);

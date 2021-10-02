@@ -16,7 +16,7 @@ function initCrawler(cb){
               
             let $ = res.$;
             $('ol li article').each(function(i,book){
-                const title = $(book).find('h3 a').text();
+                const title = $(book).find('h3 a').attr('title');
                 const price = ($(book).find('.product_price .price_color').text()).replace(/[^0-9.]/g, '');
                 const link =  $(book).find('h3 a ').attr('href');
                 const image = $(book).find('.image_container a img').attr('src');
@@ -30,7 +30,7 @@ function initCrawler(cb){
                     link: link
                 })
                 .then(result=>{
-                    console.log('Adding book... '+result.title);
+                    console.log('Adding book: '+result.title);
                     result.save();
                 })
                 .catch(function(err){

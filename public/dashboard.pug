@@ -12,4 +12,7 @@ body
 			input(type='submit' name='submit' value='Logout')
 			br
 		each product in products
-			img(src=product.imgPath alt='img' style='width:100px; height:100px;') 
+			img(src=product.imgPath alt='img' style='width:100px; height:100px;')
+			p #{product.title}
+			p price: $#{product.price}
+			p stock: #{product.stock}

@@ -33,7 +33,7 @@ const productSchema = new Schema({
 
 productSchema.pre('save', async function(next){
     const product = this;
-    const random = Math.floor(Math.random() * 50);
+    const random = Math.floor(Math.random() * 10);
     this.stock = random;
     next();
 })
