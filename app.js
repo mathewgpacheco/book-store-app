@@ -33,13 +33,13 @@ app.use(session({
 }));
 
 
-/*
+
 
 crawler.initCrawler(function(err){
   if(err) throw err;
   app.listen(port);
   console.log("Server listening at: " + port);
-})*/
+})
 app.listen(port);
 console.log("Server listening at: " + port);
 app.use(indexRoutes);
