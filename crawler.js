@@ -20,12 +20,13 @@ function initCrawler(cb){
                 const price = ($(book).find('.product_price .price_color').text()).replace(/[^0-9.]/g, '');
                 const link =  $(book).find('h3 a ').attr('href');
                 const image = $(book).find('.image_container a img').attr('src');
+                let imgPath = 'https://books.toscrape.com'+ image.substring(2);
                 Product
                 .create({
                     _id: mongoose.Types.ObjectId(),
                     title:title,
                     price: parseFloat(price),
-                    imgPath: image,
+                    imgPath: imgPath,
                     link: link
                 })
                 .then(result=>{
@@ -41,8 +42,7 @@ function initCrawler(cb){
           done();
         }
       })
-
-    for(let i =0;i<51;i++){
+    for(let i =1;i<51;i++){
         c.queue('https://books.toscrape.com/catalogue/page-'+i+'.html');
     }
 

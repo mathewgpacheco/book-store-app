@@ -24,21 +24,22 @@ function register(req,res,next){
                 username: username,
                 password: password
             })
-
-            user.save();
-            console.log('user created');
-            let usr = {
-                _id: user._id,
-                username: user.username
-            }
-            console.log('in register: ' +   usr.username);
-            const token = jwt.sign(usr,
-                process.env.ACCESS_TOKEN_SECRET,
-                {
-                    expiresIn: '1h'
-                });
-            req.session.token = token;
-            return res.redirect('/user/dashboard');
+            req.user = user;
+            user
+            .save()
+            .then( result =>{
+                console.log('user created');
+                let usr = {
+                    _id: result._id,
+                    username: result.username
+                }
+                const token = jwt.sign(usr,
+                    process.env.ACCESS_TOKEN_SECRET,{
+                        expiresIn: '1h'
+                    });
+                    req.session.token = token;
+                    return res.redirect('/user/'+usr.username+'/dashboard');
+            })
         }
     })
 
@@ -71,7 +72,7 @@ function login(req,res,next){
                         expiresIn: '1h'
                     });
                 req.session.token = token;
-                return res.redirect('/user/dashboard');
+                return res.redirect('/user/'+user.username+'/dashboard');
             })
         }
         else {
@@ -90,15 +91,16 @@ function logout(req,res,next){
 
 }
 
-function dashboard(req,res,next){
+function dashboard(req,res){
     let user = req.user;
-    console.log('dashboard: ' +user.username);
+    let products = req.products;
+    console.log('dashboard: ' +user.username); 
     User
     .findOne({_id:user._id})
     .exec()
     .then(result =>{
         console.log(result);
-        return res.render('../public/dashboard.pug', {name: result.username});
+        res.render('../public/dashboard.pug', {name: result.username, products: products});
     })
 }
 module.exports = {

@@ -1,7 +1,7 @@
 
 function home(req,res,next){
     console.log('this is index');
-    res.render('../public/index.pug');
+    res.render('../public/index.pug',);
 }
 
 
