@@ -12,9 +12,12 @@ body
 			input(type='submit' name='submit' value='Logout')
 			br
 		each product in products
-			img(src=product.imgPath alt='img' style='width:100px; height:100px;')
-			p #{product.title}
-			p price: $#{product.price}
-			p stock: #{product.stock}
-			p genres: #{product.genre}
+			form(method='POST' action='/products/'+product.title+'/add')
+				img(src=product.imgPath alt='img' style='width:100px; height:100px;')
+				p #{product.title}
+				p price: $#{product.price}
+				p stock: #{product.stock}
+				p genres: #{product.genre}
+				input(type='hidden', name='title', value=product.title)
+				input(type='submit', name='submit', value='add to cart')
 			br
