@@ -11,7 +11,7 @@ const orderSchema = new Schema({
         default: false,
     },
     products:[{
-        id: {
+        _id: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'Product'
         },

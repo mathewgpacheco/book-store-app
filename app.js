@@ -35,11 +35,11 @@ app.use(session({
 
 
 
-crawler.initCrawler(function(err){
-  if(err) throw err;
+//crawler.initCrawler(function(err){
+  //if(err) throw err;
   app.listen(port);
   console.log("Server listening at: " + port);
-})
+//})
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
 app.use('/products/', productRoutes);

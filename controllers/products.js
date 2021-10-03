@@ -8,7 +8,7 @@ async function add(req,res,next){
     let username = req.user.username;
     let product = await Product.findOne({title: title});
     let data = {
-        id: product._id,
+        _id: product._id,
         quantity: 1
     }
     let order = await Order.findOneAndUpdate({id: id}, {$push: {products: data}},{
@@ -16,11 +16,12 @@ async function add(req,res,next){
         upsert: true
     });
     order.save();
-    let user = await User.findOneAndUpdate({username: username}, {$push: {orders: order}},{
-        new: true,
-        upsert: true});
-    user.save();
-    console.log('done');
+
+    let user = await User.findOne({username: username});
+    if (!user.orders.includes(order._id)){
+        user.orders.push(order);
+        user.save();
+    }
     res.redirect('/user/'+username+'/dashboard');
 }
 
