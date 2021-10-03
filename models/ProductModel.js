@@ -27,6 +27,9 @@ const productSchema = new Schema({
     },
     reviews: {
         type: [Number],
+    },
+    genre: {
+        type: [String]
     }
 
 });
@@ -35,6 +38,57 @@ productSchema.pre('save', async function(next){
     const product = this;
     const random = Math.floor(Math.random() * 10);
     this.stock = random;
+
+    let genres = ["Travel",
+    "Mystery",
+    "Historical Fiction",
+   "Sequential Art",
+    "Classics",
+    "Philosophy",
+    "Romance",
+    "Womens Fiction",
+    "Fiction",
+    "Childrens",
+    "Religion",
+    "Nonfiction",
+    "Music",
+    "Science Fiction",
+    "Sports and Games",
+    "Fantasy",
+    "New Adult",
+    "Young Adult",
+    "Science",
+    "Poetry",
+    "Paranormal",
+    "Art",
+    "Psychology",
+    "Autobiography",
+    "Parenting",
+    "Adult Fiction",
+    "Humor",
+    "Horror",
+    "History",
+    "Food and Drink",
+    "Christian Fiction",
+    "Business",
+    "Biography",
+    "Thriller",
+    "Contemporary",
+    "Spirituality",
+    "Academic",
+    "Self Help",
+    "Historical",
+    "Christian",
+    "Suspense",
+    "Short Stories",
+    "Novels",
+    "Health",
+    "Politics",
+    "Cultural",
+    "Erotica",
+    "Crime"];
+
+    this.genre.push(genres[Math.floor(Math.random() * genres.length)]);
     next();
 })
 
