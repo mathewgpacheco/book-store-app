@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
+const orderRoutes = require('./routes/order');
 const crawler = require('./crawler');
 
 
@@ -35,11 +36,12 @@ app.use(session({
 
 
 
-//crawler.initCrawler(function(err){
-  //if(err) throw err;
+crawler.initCrawler(function(err){
+  if(err) throw err;
   app.listen(port);
   console.log("Server listening at: " + port);
-//})
+})
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
 app.use('/products/', productRoutes);
+app.use('/order/',orderRoutes);

@@ -6,10 +6,6 @@ const orderSchema = new Schema({
         type: Number,
         required: true
     },
-    submitted: {
-        type: Boolean,
-        default: false,
-    },
     products:[{
         _id: {
             type: mongoose.SchemaTypes.ObjectId,

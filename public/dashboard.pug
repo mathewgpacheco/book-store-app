@@ -11,6 +11,9 @@ body
 		form(method='POST' action='/user/logout')
 			input(type='submit' name='submit' value='Logout')
 			br
+		form(method='POST' action='/order/submit')
+			input(type='submit' name='submit' value='Place order')
+			br
 		each product in products
 			form(method='POST' action='/products/'+product.title+'/add')
 				img(src=product.imgPath alt='img' style='width:100px; height:100px;')
