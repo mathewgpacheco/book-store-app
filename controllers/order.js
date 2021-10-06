@@ -18,8 +18,15 @@ function clearOrder(req,res,next){
     return res.redirect(201,'/user/'+req.user.username+'/dashboard');
 }
 
-function viewOrder(req,res,next){
+//lists all orders a user has made
+function getOrders(req,res,next){
 
+}
+
+//renders current items in a cart to page
+function getCart(req,res,next){
+    let cart =req.session.cart;
+    return res.render('../public/cart.pug', {items: cart, username:req.user.username})
 }
 
 module.exports ={
@@ -27,5 +34,6 @@ module.exports ={
     processOrder,
     addOrder,
     clearOrder,
-    viewOrder
+    getOrders,
+    getCart,
 }

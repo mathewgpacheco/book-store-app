@@ -1,0 +1,27 @@
+
+html
+head
+	title View Cart
+	include ../public/partials/header
+div#main
+	h1 Cart
+	br
+	a(href='/user/'+username+'/dashboard') Dashboard
+		|
+		|
+	a(href='/order/viewOrders') View Orders
+	br
+	if items.length== 0
+			p No products in cart
+	else 
+		each item in items
+			img(src=item.imgPath alt='img' style='width:100px; height:100px;')
+			p Product: #{item.title} 
+			p QTY: #{item.quantity}
+			form(method='POST' action='/remove')
+				input(type='hidden' name='id' value=item.itemNum)
+				input(type='submit',name='submit',value='remove item')
+				br
+		form(method='POST' action='/submit')
+			p #{alert}
+			input(type='submit', name='submit', value='Place Order')

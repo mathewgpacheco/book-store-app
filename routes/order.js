@@ -8,11 +8,23 @@ const orderMiddleware = require('../middleware/order');
 //user related routes
 router.post('/submit', 
 userMiddleware.authenticateToken,
-orderMiddleware.existOrder,
+orderMiddleware.existCart,
 orderController.verifyOrder,
 orderController.processOrder,
 orderController.addOrder,
 orderController.clearOrder);
+
+router.post('/viewOrders',
+userMiddleware.authenticateToken,
+orderController.getOrders
+)
+
+router.get('/cart',
+userMiddleware.authenticateToken,
+orderMiddleware.existCart,
+orderController.getCart
+)
+
 
 
 module.exports = router;
