@@ -22,6 +22,6 @@ div#main
 				input(type='hidden' name='id' value=item.itemNum)
 				input(type='submit',name='submit',value='remove item')
 				br
-		form(method='POST' action='/submit')
+		form(method='POST' action='/order/submit')
 			p #{alert}
 			input(type='submit', name='submit', value='Place Order')

@@ -14,7 +14,7 @@ orderController.processOrder,
 orderController.addOrder,
 orderController.clearOrder);
 
-router.post('/viewOrders',
+router.get('/viewOrders',
 userMiddleware.authenticateToken,
 orderController.getOrders
 )

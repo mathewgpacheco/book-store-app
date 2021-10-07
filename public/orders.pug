@@ -1,0 +1,17 @@
+
+html
+head
+	title View Orders
+	include ../public/partials/header
+div#main
+	h1 Orders
+	br
+	a(href='/user/'+username+'/dashboard') Dashboard
+	br
+	if orders.length== 0
+			p No orders placed.
+	else 
+		each order in orders
+			p Order #: ##{order.order.id}
+			p Title: #{order.product}
+			p Price: #{order.product}
