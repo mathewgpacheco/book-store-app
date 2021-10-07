@@ -87,15 +87,16 @@ function getOrders(req,res,next){
     .select('orders')
     .populate({
         path: 'orders',
+        model: 'Order',
         populate: {
-            path: 'products',
-            model: 'Order'
+            path: 'products._id',
+            model: 'Product'
         }
     })
     .then(result =>{
         console.log('reslt')
         console.log(result);
-        console.log(result.products);
+    //    console.log(result.orders[0].products[0]);
         return res.render('../public/orders.pug',{orders: result});
     })
 }

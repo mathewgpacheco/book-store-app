@@ -11,7 +11,7 @@ div#main
 	if orders.length== 0
 			p No orders placed.
 	else 
-		each order in orders
-			p Order #: ##{order.order.id}
-			p Title: #{order.product}
-			p Price: #{order.product}
+		p #{orders.orders}
+		each order in orders.orders
+			p #{order.products}
+			p Title: #{order.products.title}
