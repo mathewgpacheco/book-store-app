@@ -10,8 +10,8 @@ div#main
 	br
 	if orders.length== 0
 			p No orders placed.
-	else 
-		p #{orders.orders}
-		each order in orders.orders
-			p #{order.products}
-			p Title: #{order.products.title}
+	else
+		each order in orders
+			p #: #{order.id}
+			p p: #{order.products}
+		

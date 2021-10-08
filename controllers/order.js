@@ -72,18 +72,20 @@ async function addOrder(req,res,next){
 }
 
 function clearOrder(req,res,next){
+    console.log(req.session.cart.length);
     if(req.session.cart.length !=0 || !req.session.cart){
         req.session.cart = [];
+        console.log(req.session.cart.length);
     }
     return res.redirect(201,'/user/'+req.user.username+'/dashboard');
 }
 
 //lists all orders a user has made
 function getOrders(req,res,next){
-    let user = req.user;
-    console.log(user.username);
+    let username = req.user.username;
+
     User
-    .findOne({username: user.username})
+    .findOne({username: username})
     .select('orders')
     .populate({
         path: 'orders',
@@ -94,10 +96,9 @@ function getOrders(req,res,next){
         }
     })
     .then(result =>{
-        console.log('reslt')
-        console.log(result);
-    //    console.log(result.orders[0].products[0]);
-        return res.render('../public/orders.pug',{orders: result});
+        
+        console.log(result.orders);
+        return res.render('../public/orders.pug',{orders: result.orders});
     })
 }
 
