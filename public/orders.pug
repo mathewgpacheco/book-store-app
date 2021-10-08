@@ -8,10 +8,17 @@ div#main
 	br
 	a(href='/user/'+username+'/dashboard') Dashboard
 	br
-	if orders.length== 0
+	if result.length== 0
 			p No orders placed.
 	else
-		each order in orders
-			p #: #{order.id}
-			p p: #{order.products}
-		
+		- for(var i =0;i<result.orders.length;i++){
+			p Order #: #{result.orders[i].id+1}
+			- for(var j =0;j<result.orders[i].products.length;j++){
+				p #{result.orders[i].products[j]._id.title}
+				img(src=result.orders[i].products[j]._id.imgPath alt='img' style='width:100px; height:100px;')
+				p Price: #{result.orders[i].products[j]._id.price}
+				p Quantity: #{result.orders[i].products[j].quantity}
+			- }
+			br
+			br
+		- }
