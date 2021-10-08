@@ -49,6 +49,10 @@ function findProduct(req,res,next){
     Product 
     .findOne({title: new RegExp(param)})
     .then(result=>{
+        if(!result){
+            console.log('Product does not exist');
+            return res.redirect('/user/'+username+'/dashboard');
+        }
         return res.render( '../public/product.pug',{product: result, username:req.user.username});
     })
 }
