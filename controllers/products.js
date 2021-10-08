@@ -32,8 +32,6 @@ function remove(req,res,){
 
 function getProduct(req,res,next){
     let id = req.params.productID;
-    console.log(req.params);
-    console.log(id);
     Product
     .findOne({_id:id})
     .then(result =>{
@@ -48,7 +46,6 @@ function getProduct(req,res,next){
 
 function findProduct(req,res,next){
     let param = req.body.param;
-    console.log(param);
     Product 
     .findOne({title: new RegExp(param)})
     .then(result=>{
