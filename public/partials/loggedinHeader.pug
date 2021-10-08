@@ -1,0 +1,25 @@
+#divheader
+	a(href='/user/'+username+'/dashboard') Shop
+	|
+	|
+	a(href='/order/cart') View Cart
+	|
+	|
+	a(href='/order/viewOrders') View Orders
+	|
+	|
+	form(method='POST' action='/user/logout')
+		input(type='submit' name='submit' value='Logout')
+		br
+	form(method='GET' action='/products')
+		br
+		label(for ='Search') Search for a book
+		br
+		input(type = 'text', name = 'id')
+		br
+		label(for='0') all
+		input(type='radio', name='instock', value='0' checked)
+		label(for='1') in stock
+		input(type='radio', name='instock', value='1' )
+		input(type = 'submit', name='submit',value='Submit')
+		br 

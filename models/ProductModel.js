@@ -36,7 +36,8 @@ const productSchema = new Schema({
 
 productSchema.pre('save', async function(next){
     const product = this;
-    const random = Math.floor(Math.random() * 10);
+    //random value between 1 and 10
+    const random = Math.random() * (10-1) + 1;
     this.stock = random;
 
     let genres = ["Travel",

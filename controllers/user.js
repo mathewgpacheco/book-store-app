@@ -99,7 +99,7 @@ function dashboard(req,res){
     .findOne({_id:user._id})
     .exec()
     .then(result =>{
-        res.render('../public/dashboard.pug', {name: result.username, products: products});
+        res.render('../public/dashboard.pug', {username: result.username, products: products});
     })
 }
 module.exports = {

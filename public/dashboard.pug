@@ -1,29 +1,15 @@
-
 html
 	head
 		title Dashboard
-body
+		include ../public/partials/loggedinHeader
 	div#main
-		h1 Hello, #{name}
-		br
-		a(href='/order/cart') View Cart
-		|
-		|
-		a(href='/order/viewOrders') View Orders
-		form(method='POST' action='/user/logout')
-			input(type='submit' name='submit' value='Logout')
-			br
-		form(method='POST' action='/order/submit')
-			input(type='submit' name='submit' value='Place order')
-			br
-		
+		h1 Hello, #{username}
 		each product in products
-			form(method='POST' action='/products/'+product.title+'/add')
+			form(method='POST' action='/products/'+product._id+'/add')
 				img(src=product.imgPath alt='img' style='width:100px; height:100px;')
-				p #{product.title}
+				br
+				a(href='/products/'+product._id) #{product.title}
 				p price: $#{product.price}
-				p stock: #{product.stock}
-				p genres: #{product.genre}
-				input(type='hidden', name='title', value=product.title)
+				input(type='hidden', name='_id', value=product._id)
 				input(type='submit', name='submit', value='add to cart')
 			br

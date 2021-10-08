@@ -1,0 +1,28 @@
+
+html
+head
+	title Product
+body
+	include ../public/partials/loggedinHeader
+div#main
+	br
+	p #{product.title}
+	form(method='POST' action='/products/'+product._id+'/add')
+				img(src=product.imgPath alt='img' style='width:100px; height:100px;')
+				p price: $#{product.price}
+				p genres: #{product.genre}
+				p stock: #{product.stock}
+				p Description: ...soon
+				input(type='hidden', name='_id', value=product._id)
+				input(type='submit', name='submit', value='add to cart')
+	a(href='/products/'+product.id+'/reviews') Product Reviews
+	form(method='POST' action='/products/'+product._id+'/addreview')
+		
+		label(for ='Create') Add a review for this item
+		br
+		p #{alert}
+		input(type = 'text', name = 'review', required=true)
+		br
+		input(type = 'submit', name='submit',value='Add')
+		br 
+	br

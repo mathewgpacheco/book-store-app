@@ -2,13 +2,11 @@
 html
 head
 	title View Orders
-	include ../public/partials/header
+	include ../public/partials/loggedinHeader
 div#main
 	h1 Orders
 	br
-	a(href='/user/'+username+'/dashboard') Dashboard
-	br
-	if result.length== 0
+	if result.orders.length== 0
 			p No orders placed.
 	else
 		- for(var i =0;i<result.orders.length;i++){
@@ -16,7 +14,7 @@ div#main
 			- for(var j =0;j<result.orders[i].products.length;j++){
 				p #{result.orders[i].products[j]._id.title}
 				img(src=result.orders[i].products[j]._id.imgPath alt='img' style='width:100px; height:100px;')
-				p Price: #{result.orders[i].products[j]._id.price}
+				p Price: $#{result.orders[i].products[j]._id.price}
 				p Quantity: #{result.orders[i].products[j].quantity}
 			- }
 			br

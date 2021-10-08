@@ -95,7 +95,7 @@ function getOrders(req,res,next){
     })
     .exec()
     .then(result =>{
-        return res.render('../public/orders.pug',{result: result});
+        return res.render('../public/orders.pug',{result: result,username:username});
     })
 }
 
