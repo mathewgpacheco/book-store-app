@@ -13,7 +13,7 @@ const crawler = require('./crawler');
 
 
 mongoose.connect(
-   'DB_URI=mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/store?retryWrites=true&w=majority',
+   'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/store?retryWrites=true&w=majority',
    {useUnifiedTopology:true},{autoIndex: false});
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
