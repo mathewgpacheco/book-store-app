@@ -46,6 +46,7 @@ function getProduct(req,res,next){
 
 function findProduct(req,res,next){
     let param = req.body.param;
+    let username = req.user.username;
     Product 
     .findOne({title: new RegExp(param)})
     .then(result=>{
@@ -53,7 +54,7 @@ function findProduct(req,res,next){
             console.log('Product does not exist');
             return res.redirect('/user/'+username+'/dashboard');
         }
-        return res.render( '../public/product.pug',{product: result, username:req.user.username});
+        return res.render( '../public/product.pug',{product: result, username:username});
     })
 }
 
