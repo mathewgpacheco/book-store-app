@@ -8,5 +8,5 @@ const orderMiddleware = require('../middleware/order');
 router.post('/:productID/add', userMiddleware.authenticateToken, orderMiddleware.existCart, productController.add);
 router.post('/:productID/remove', userMiddleware.authenticateToken, productController.remove);
 router.get('/:productID/', userMiddleware.authenticateToken, productController.getProduct);
-
+router.post('/product', userMiddleware.authenticateToken, productController.findProduct );
 module.exports = router;

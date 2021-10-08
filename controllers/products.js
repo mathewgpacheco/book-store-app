@@ -32,6 +32,7 @@ function remove(req,res,){
 
 function getProduct(req,res,next){
     let id = req.params.productID;
+    console.log(req.params);
     console.log(id);
     Product
     .findOne({_id:id})
@@ -45,9 +46,19 @@ function getProduct(req,res,next){
     
 }
 
+function findProduct(req,res,next){
+    let param = req.body.param;
+    console.log(param);
+    Product 
+    .findOne({title: new RegExp(param)})
+    .then(result=>{
+        return res.render( '../public/product.pug',{product: result, username:req.user.username});
+    })
+}
+
 module.exports ={
     add,
     remove,
-    getProduct
-
+    getProduct,
+    findProduct
 }

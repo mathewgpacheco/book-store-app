@@ -11,15 +11,11 @@
 	form(method='POST' action='/user/logout')
 		input(type='submit' name='submit' value='Logout')
 		br
-	form(method='GET' action='/products')
+	form(method='POST' action='/products/product')
 		br
 		label(for ='Search') Search for a book
 		br
-		input(type = 'text', name = 'id')
+		input(type = 'text', name = 'param')
 		br
-		label(for='0') all
-		input(type='radio', name='instock', value='0' checked)
-		label(for='1') in stock
-		input(type='radio', name='instock', value='1' )
 		input(type = 'submit', name='submit',value='Submit')
 		br 

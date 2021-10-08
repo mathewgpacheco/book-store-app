@@ -29,7 +29,7 @@ const productSchema = new Schema({
         type: [Number],
     },
     genre: {
-        type: [String]
+        type: String
     }
 
 });
@@ -37,7 +37,7 @@ const productSchema = new Schema({
 productSchema.pre('save', async function(next){
     const product = this;
     //random value between 1 and 10
-    const random = Math.random() * (10-1) + 1;
+    const random = Math.floor(Math.random() * (10-1 + 1)) + 1;
     this.stock = random;
 
     let genres = ["Travel",
@@ -89,7 +89,7 @@ productSchema.pre('save', async function(next){
     "Erotica",
     "Crime"];
 
-    this.genre.push(genres[Math.floor(Math.random() * genres.length)]);
+    this.genre = (genres[Math.floor(Math.random() * genres.length)]);
     next();
 })
 
