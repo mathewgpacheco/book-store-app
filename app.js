@@ -12,15 +12,14 @@ const orderRoutes = require('./routes/order');
 const crawler = require('./crawler');
 
 
-mongoose.connect('mongodb://localhost:27017/store',
- // 'DB_URI=mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/store?retryWrites=true&w=majority',
+mongoose.connect(
+   'DB_URI=mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/store?retryWrites=true&w=majority',
    {useUnifiedTopology:true},{autoIndex: false});
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
 const store = new MongoDBStore({
-    //uri:'mongodb+srv://' +process.env.DB_USER+ ':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/sessions?retryWrites=true&w=majority',
-    uri: 'mongodb://localhost:27017/sessions',
+    uri:'mongodb+srv://' +process.env.DB_USER+ ':'+process.env.DB_PASS+'@cluster0.xpgq3.mongodb.net/sessions?retryWrites=true&w=majority',
     collection: 'sessiondata',
   });
 
