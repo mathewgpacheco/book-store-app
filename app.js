@@ -34,12 +34,10 @@ app.use(session({
 
 
 
+app.listen(port);
+console.log("Server listening at: " + port);
 
-crawler.initCrawler(function(err){
-  if(err) throw err;
-  app.listen(port);
-  console.log("Server listening at: " + port);
-})
+crawler.initCrawler();
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
 app.use('/products/', productRoutes);

@@ -2,7 +2,7 @@ const Crawler = require('crawler');
 const mongoose = require('mongoose');
 const Product = require('./models/ProductModel');
 
-function initCrawler(cb){
+function initCrawler(){
     let c = new Crawler({
   
         maxConnections: 10,
@@ -48,7 +48,6 @@ function initCrawler(cb){
 
     c.on('drain',function(){
         console.log("Done.");
-        return cb();
     });
 }
 
