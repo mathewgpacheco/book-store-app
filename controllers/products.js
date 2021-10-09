@@ -11,7 +11,7 @@ async function add(req,res,next){
         quantity: 1
     }
     req.session.cart.push(data);
-    res.redirect('/user/'+username+'/dashboard');
+    return res.redirect('/user/'+username+'/dashboard');
 }
 
 
@@ -31,7 +31,7 @@ function remove(req,res,){
 }
 
 function getProduct(req,res,next){
-    let id = req.params.productID;
+    let id = req.productID;
     Product
     .findOne({_id:id})
     .then(result =>{
@@ -54,7 +54,8 @@ function findProduct(req,res,next){
             console.log('Product does not exist');
             return res.redirect('/user/'+username+'/dashboard');
         }
-        return res.render( '../public/product.pug',{product: result, username:username});
+        return res.redirect('/products/'+result._id);
+        //return res.render( '../public/product.pug',{product: result, username:username});
     })
 }
 
@@ -62,5 +63,5 @@ module.exports ={
     add,
     remove,
     getProduct,
-    findProduct
+    findProduct,
 }

@@ -6,7 +6,6 @@ const reviewSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
-    product: {type: mongoose.SchemaType.ObjectId, ref: 'Product'},
     owner: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
     review: {
         type: String,

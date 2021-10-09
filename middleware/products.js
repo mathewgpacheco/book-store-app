@@ -16,7 +16,15 @@ function getProducts(req,res,next){
     
 }
 
-
+function product(req,res,next){
+    console.log('rwefweew');
+    if(!req.params.productID){
+        next();
+    }
+    req.productID = req.params.productID;
+    next();
+}
 module.exports ={
-    getProducts
+    getProducts,
+    product
 }

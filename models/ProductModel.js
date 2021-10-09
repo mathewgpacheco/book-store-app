@@ -25,9 +25,7 @@ const productSchema = new Schema({
     link: {
         type: String
     },
-    reviews: {
-        type: [Number],
-    },
+    reviews:[{type: mongoose.SchemaTypes.ObjectId, ref: 'Review'}],
     genre: {
         type: String
     }
