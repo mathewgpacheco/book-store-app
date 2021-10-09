@@ -62,7 +62,7 @@ function login(req,res,next){
                     console.log('wrong password');
                     return res.redirect('/');
                 }
-                console.log('succiess');
+                console.log('Log in success');
                 let user = {
                     _id: result._id,
                     username: result.username
@@ -99,7 +99,7 @@ function dashboard(req,res){
     .findOne({_id:user._id})
     .exec()
     .then(result =>{
-        res.render('../public/dashboard.pug', {username: result.username, products: products});
+        return res.render('../public/dashboard.pug', {username: result.username, products: products});
     })
 }
 module.exports = {

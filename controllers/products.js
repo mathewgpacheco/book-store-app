@@ -1,8 +1,9 @@
 const Product = require('../models/ProductModel');
 const mongoose = require('mongoose');
 function add(req,res,next){
-    let id = req.body._id;
+    let id = req.productID;
     let username = req.user.username;
+    console.log('id: '+id);
     Product
     .findOne({_id: id})
     .then(product =>{
@@ -12,20 +13,19 @@ function add(req,res,next){
             id: mongoose.Types.ObjectId(product._id),
             quantity: 1
         }
+        console.log('adding: '+data.title+' to cart.');
         req.session.cart.push(data);
-        return res.redirect('/user/'+username+'/dashboard');
+        res.redirect('/user/'+username+'/dashboard');
     })
     .catch(err=>{
-        console.log('Something went wrong...');
-        return res.redirect('/user/'+username+'/dashboard');
+        console.log(err);
     })
 }
 
 
 function remove(req,res,){
     let cart =req.session.cart;
-    let toRemove = req.body.id;
-    console.log(toRemove);
+    let toRemove = req.productID;
     let index;
     for(let i=0;i<cart.length;i++){
         if(toRemove == cart[i].id){
@@ -33,6 +33,7 @@ function remove(req,res,){
         }
     }
     cart.splice(index, 1);
+    console.log('Removing id: '+req.productID);
     return res.redirect('/order/cart');
 
 }

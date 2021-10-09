@@ -2,7 +2,7 @@ const Product = require('../models/ProductModel');
 
 //make sure to render products partial before dash/ index
 function getProducts(req,res,next){
-    console.log('load some products');
+    console.log('loading 10 random products');
     //for now, load 10 random products from the db.
     //will implement recomender system later
     Product
@@ -12,11 +12,9 @@ function getProducts(req,res,next){
         req.products = results;
         next();
     })
-    next();
 }
 
 function product(req,res,next){
-    console.log('rwefweew');
     if(!req.params.productID){
         next();
     }

@@ -1,6 +1,6 @@
 
 function home(req,res,next){
-    console.log('this is index');
+    console.log('landing page');
     res.render('../public/index.pug',);
 }
 

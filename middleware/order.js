@@ -4,6 +4,7 @@ function existCart(req,res,next){
         req.session.cart = [];
         next();
     }
+    console.log('cart length: '+ req.session.cart.length);
     next();
 }
 module.exports = {
