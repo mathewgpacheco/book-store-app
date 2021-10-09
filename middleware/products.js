@@ -12,8 +12,7 @@ function getProducts(req,res,next){
         req.products = results;
         next();
     })
-    return;
-    
+    next();
 }
 
 function product(req,res,next){

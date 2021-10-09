@@ -1,17 +1,24 @@
 const Product = require('../models/ProductModel');
 const mongoose = require('mongoose');
-async function add(req,res,next){
+function add(req,res,next){
     let id = req.body._id;
     let username = req.user.username;
-    let product = await Product.findOne({_id: id});
-    let data = {
-        title: product.title,
-        imgPath: product.imgPath,
-        id: mongoose.Types.ObjectId(product._id),
-        quantity: 1
-    }
-    req.session.cart.push(data);
-    return res.redirect('/user/'+username+'/dashboard');
+    Product
+    .findOne({_id: id})
+    .then(product =>{
+        let data = {
+            title: product.title,
+            imgPath: product.imgPath,
+            id: mongoose.Types.ObjectId(product._id),
+            quantity: 1
+        }
+        req.session.cart.push(data);
+        return res.redirect('/user/'+username+'/dashboard');
+    })
+    .catch(err=>{
+        console.log('Something went wrong...');
+        return res.redirect('/user/'+username+'/dashboard');
+    })
 }
 
 
