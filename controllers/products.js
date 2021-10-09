@@ -15,6 +15,7 @@ function add(req,res,next){
         }
         console.log('adding: '+data.title+' to cart.');
         req.session.cart.push(data);
+        console.log('cart length: '+ req.session.cart.length);
         res.redirect('/user/'+username+'/dashboard');
     })
     .catch(err=>{
@@ -54,7 +55,6 @@ function getProduct(req,res,next){
 
 function findProduct(req,res,next){
     let param = req.body.param;
-    let username = req.user.username;
     Product 
     .findOne({title: new RegExp(param)})
     .then(result=>{
