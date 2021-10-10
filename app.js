@@ -37,7 +37,7 @@ app.use(session({
 app.listen(port);
 console.log("Server listening at: " + port);
 
-//crawler.initCrawler();
+crawler.initCrawler();
 app.use(indexRoutes);
 app.use('/user/',userRoutes);
 app.use('/products/', productRoutes);
