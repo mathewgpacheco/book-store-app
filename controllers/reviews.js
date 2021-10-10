@@ -15,7 +15,7 @@ function addReview(req,res,next){
     });
     review.save();
     Product
-    .findOneAndUpdate({_id: productID}, {$push: {reviews: review}}).exec();
+    .findOneAndUpdate({_id: productID}, {$push: {reviews: review}}).exec()  ;
 
     User
     .findOneAndUpdate({_id: id}, {$push: {reviews: review}}).exec();

@@ -12,7 +12,8 @@ div#main
 		- for(var i =0;i<result.orders.length;i++){
 			p Order #: #{result.orders[i].id+1}
 			- for(var j =0;j<result.orders[i].products.length;j++){
-				p #{result.orders[i].products[j]._id.title}
+				a(href='/products/'+result.orders[i].products[j]._id._id) #{result.orders[i].products[j]._id.title}
+				br
 				img(src=result.orders[i].products[j]._id.imgPath alt='img' style='width:100px; height:100px;')
 				p Price: $#{result.orders[i].products[j]._id.price}
 				p Quantity: #{result.orders[i].products[j].quantity}
