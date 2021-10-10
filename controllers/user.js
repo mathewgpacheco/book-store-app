@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 function getRegister(req,res,next){
-    res.render('../public/register.pug');
+    return res.render('../public/register.pug');
 }
 function register(req,res,next){
     let username = req.body.username;
@@ -97,10 +97,11 @@ function dashboard(req,res){
     console.log('dashboard: ' +user.username); 
     User
     .findOne({_id:user._id})
-    .exec()
     .then(result =>{
         return res.render('../public/dashboard.pug', {username: result.username, products: products});
     })
+    console.log('here dash');
+    return;
 }
 module.exports = {
     getRegister,

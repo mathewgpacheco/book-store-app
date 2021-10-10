@@ -15,9 +15,6 @@ function getProducts(req,res,next){
 }
 
 function product(req,res,next){
-    if(!req.params.productID){
-        next();
-    }
     req.productID = req.params.productID;
     next();
 }

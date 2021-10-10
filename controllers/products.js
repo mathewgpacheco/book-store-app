@@ -16,11 +16,12 @@ function add(req,res,next){
         console.log('adding: '+data.title+' to cart.');
         req.session.cart.push(data);
         console.log('cart length: '+ req.session.cart.length);
+        console.log('here 0');
         res.redirect('/user/'+username+'/dashboard');
+        return;
     })
-    .catch(err=>{
-        console.log(err);
-    })
+    console.log('here3');
+    return;
 }
 
 
@@ -63,7 +64,7 @@ function findProduct(req,res,next){
             return res.redirect('/user/'+username+'/dashboard');
         }
         return res.redirect('/products/'+result._id);
-        //return res.render( '../public/product.pug',{product: result, username:username});
+
     })
 }
 
