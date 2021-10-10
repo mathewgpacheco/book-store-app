@@ -7,7 +7,7 @@ const reviewSchema = new Schema({
         required: true,
     },
     owner: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
-    review: {
+    description: {
         type: String,
         required: true
     }

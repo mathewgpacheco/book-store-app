@@ -1,7 +1,6 @@
 const Product = require('../models/ProductModel');
 const mongoose = require('mongoose');
 async function add(req,res,next){
-    console.log('cart: '+ req.session.cart);
     let id = req.productID;
     let username = req.user.username;
     const product = await Product.findOne({_id: id});
@@ -13,14 +12,11 @@ async function add(req,res,next){
     }
 
     req.session.cart.push(data);
-    console.log('cart after add: '+ req.session.cart);
-    console.log('cart length right after add: '+req.session.cart.length);
     return next();
 }
 
 function redirect(req,res,next){
     let username = req.user.username;
-    console.log('cart length in redirect: '+req.session.cart.length);
     return res.redirect('/user/'+username+'/dashboard');
 }
 function remove(req,res,){
@@ -30,11 +26,9 @@ function remove(req,res,){
     for(let i=0;i<cart.length;i++){
         if(toRemove == cart[i].id){
             index  =i;
-            console.log('ind: '+index);
         }
     }
     cart.splice(index, 1);
-    console.log('Removing id: '+req.productID);
     return res.redirect('/order/cart');
 
 }
@@ -43,6 +37,14 @@ function getProduct(req,res,next){
     let id = req.productID;
     Product
     .findOne({_id:id})
+    .populate({
+        path: 'reviews',
+        model: 'Review',
+        populate: {
+            path: 'owner',
+            model: 'User'
+        },
+    })
     .then(result =>{
         return res.render( '../public/product.pug',{product: result, username:req.user.username});
     })

@@ -96,8 +96,6 @@ function logout(req,res,next){
 async function dashboard(req,res,next){
     let user = req.user;
     let products = req.products;
-    console.log(products.length);
-    console.log('dashboard: ' +user.username); 
     const result = await User.findOne({_id: user._id});
     return res.render('../public/dashboard.pug', {username: result.username, products: products});
 }

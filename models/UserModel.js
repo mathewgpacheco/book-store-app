@@ -16,6 +16,7 @@ const userSchema = new Schema({
         required: true
     },
     orders:[{type: mongoose.SchemaTypes.ObjectId, ref: 'Order'}],
+    reviews:[{type: mongoose.SchemaTypes.ObjectId, ref: 'Review'}],
 });
 
 userSchema.pre('save', async function(next){
