@@ -79,6 +79,7 @@ function login(req,res,next){
             return res.status(404).send("Username does not exist");
         }
     })
+    return;
 }
 
 function logout(req,res,next){
@@ -86,22 +87,19 @@ function logout(req,res,next){
         if(err) {
             throw err;
         }
+        console.log('log out success');
         return res.redirect('/');
     })
 
 }
 
-function dashboard(req,res){
+async function dashboard(req,res,next){
     let user = req.user;
     let products = req.products;
+    console.log(products.length);
     console.log('dashboard: ' +user.username); 
-    User
-    .findOne({_id:user._id})
-    .then(result =>{
-        return res.render('../public/dashboard.pug', {username: result.username, products: products});
-    })
-    console.log('here dash');
-    return;
+    const result = await User.findOne({_id: user._id});
+    return res.render('../public/dashboard.pug', {username: result.username, products: products});
 }
 module.exports = {
     getRegister,

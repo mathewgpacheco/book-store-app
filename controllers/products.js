@@ -1,30 +1,28 @@
 const Product = require('../models/ProductModel');
 const mongoose = require('mongoose');
-function add(req,res,next){
+async function add(req,res,next){
+    console.log('cart: '+ req.session.cart);
     let id = req.productID;
     let username = req.user.username;
-    console.log('id: '+id);
-    Product
-    .findOne({_id: id})
-    .then(product =>{
-        let data = {
-            title: product.title,
-            imgPath: product.imgPath,
-            id: mongoose.Types.ObjectId(product._id),
-            quantity: 1
-        }
-        console.log('adding: '+data.title+' to cart.');
-        req.session.cart.push(data);
-        console.log('cart length: '+ req.session.cart.length);
-        console.log('here 0');
-        res.redirect('/user/'+username+'/dashboard');
-        return;
-    })
-    console.log('here3');
-    return;
+    const product = await Product.findOne({_id: id});
+    let data = {
+        title: product.title,
+        imgPath: product.imgPath,
+        id: mongoose.Types.ObjectId(product._id),
+        quantity: 1
+    }
+
+    req.session.cart.push(data);
+    console.log('cart after add: '+ req.session.cart);
+    console.log('cart length right after add: '+req.session.cart.length);
+    return next();
 }
 
-
+function redirect(req,res,next){
+    let username = req.user.username;
+    console.log('cart length in redirect: '+req.session.cart.length);
+    return res.redirect('/user/'+username+'/dashboard');
+}
 function remove(req,res,){
     let cart =req.session.cart;
     let toRemove = req.productID;
@@ -32,6 +30,7 @@ function remove(req,res,){
     for(let i=0;i<cart.length;i++){
         if(toRemove == cart[i].id){
             index  =i;
+            console.log('ind: '+index);
         }
     }
     cart.splice(index, 1);
@@ -73,4 +72,5 @@ module.exports ={
     remove,
     getProduct,
     findProduct,
+    redirect
 }
