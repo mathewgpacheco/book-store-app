@@ -1,19 +1,33 @@
 
 html
 	head
-		title Register Page
+		style
+			include ../styles/styles.css
+		title Register
 body
-	include ../public/partials/header
 
 	div#main
-		h1 Register
-			form(method='POST' action='/user/register')
-				p #{alert}
-				label(for ='username') Username:
-				input(type = 'text', name = 'username', required=true)
-				br
-				label(for ='password') Password:
-				input(type = 'password', name = 'password', required=true)
-				br
-				input(type = 'submit', name='submit',value='submit')
-				br
+		div(class='split left')
+			div(class='centered')
+				div#header
+				a(href="/") Login
+				|
+				|
+				a(href='/user/register') Register
+				|
+				a(href='/about') About
+				h1 eBookShop
+					form(method='POST' action='/user/register')
+						p #{alert}
+						label(for ='username') Username
+						br
+						input(type = 'text', name = 'username', placeholder='Enter username' required=true)
+						br
+						label(for ='password') Password	
+						br
+						input(type = 'password', name = 'password', placeholder='Enter password' required=true)
+						br
+						button(type='submit', name='submit', value='submit') Register
+						br
+		div(class='split right')
+			img(src='https://i.pinimg.com/originals/82/d6/1d/82d61d0f74c208f73cdab39d6be407af.jpg' alt='img')
