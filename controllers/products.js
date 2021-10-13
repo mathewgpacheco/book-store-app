@@ -1,9 +1,16 @@
 const Product = require('../models/ProductModel');
 const mongoose = require('mongoose');
+const elasticlunr = require('elasticlunr');
+const { query } = require('express');
+
+const index = elasticlunr(function(){
+    this.addField('title');
+    this.addField('_id');
+    this.setRef('_id');
+})
 async function add(req,res,next){
     let id = req.productID;
-    let username = req.user.username;
-    const product = await Product.findOne({_id: id});
+    const product = await Product.findOne({_id: id}).exec();
     let data = {
         title: product.title,
         imgPath: product.imgPath,
@@ -17,7 +24,8 @@ async function add(req,res,next){
 
 function redirect(req,res,next){
     let username = req.user.username;
-    return res.redirect('/user/'+username+'/dashboard');
+    console.log('Item added. Cart length: '+req.session.cart.length);
+    return res.redirect('/user/'+username+'/store');
 }
 function remove(req,res,){
     let cart =req.session.cart;
@@ -29,7 +37,8 @@ function remove(req,res,){
         }
     }
     cart.splice(index, 1);
-    return res.redirect('/order/cart');
+    console.log('Item removed. Cart length: '+req.session.cart.length);
+    return res.redirect('/user/'+req.user.username+'/cart');
 
 }
 
@@ -55,18 +64,25 @@ function getProduct(req,res,next){
     
 }
 
-function findProduct(req,res,next){
+async function findProduct(req,res,next){
     let param = req.body.param;
-    Product 
-    .findOne({title: new RegExp(param)})
-    .then(result=>{
-        if(!result){
-            console.log('Product does not exist');
-            return res.redirect('/user/'+username+'/dashboard');
+    let username = req.user.username;
+    const results = await Product.find({});
+    let array = [];
+    for(let i =0;i<results.length; i++){
+        let doc = {
+            title: results[i].title,
+            _id: mongoose.Types.ObjectId(results[i]._id)
         }
-        return res.redirect('/products/'+result._id);
+        index.updateDoc(doc);
+    }
+    let r = (index.search(param,{})).splice(0,10);
 
-    })
+    for(let k = 0;k<r.length;k++){
+        let p = await Product.findOne({_id: r[k].ref}).exec();
+        array.push(p);
+    }
+    return res.render('../public/dashboard.pug', {username: username, products: array, query:'Your search results for: '+param});
 }
 
 module.exports ={

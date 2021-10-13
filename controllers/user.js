@@ -38,7 +38,8 @@ function register(req,res,next){
                         expiresIn: '1h'
                     });
                     req.session.token = token;
-                    return res.redirect('/user/'+usr.username+'/dashboard');
+                    req.session.cart = [];
+                    return res.redirect('/user/'+usr.username+'/store');
             })
         }
     })
@@ -72,7 +73,8 @@ function login(req,res,next){
                         expiresIn: '1h'
                     });
                 req.session.token = token;
-                return res.redirect('/user/'+user.username+'/dashboard');
+                req.session.cart = [];
+                return res.redirect('/user/'+user.username+'/store');
             })
         }
         else {
@@ -93,7 +95,7 @@ function logout(req,res,next){
 
 }
 
-async function dashboard(req,res,next){
+async function store(req,res,next){
     let user = req.user;
     let products = req.products;
     const result = await User.findOne({_id: user._id});
@@ -104,5 +106,5 @@ module.exports = {
     register,
     login,
     logout,
-    dashboard
+    store
 }

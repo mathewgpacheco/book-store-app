@@ -14,12 +14,12 @@ orderController.processOrder,
 orderController.addOrder,
 orderController.clearOrder);
 
-router.get('/viewOrders',
+router.get('/user/:userID/orders',
 userMiddleware.authenticateToken,
 orderController.getOrders
 )
 
-router.get('/cart',
+router.get('/user/:userID/cart',
 userMiddleware.authenticateToken,
 orderMiddleware.existCart,
 orderController.getCart

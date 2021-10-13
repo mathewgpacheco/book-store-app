@@ -2,7 +2,7 @@ html
 	head
 		style 
 			include ../styles/dashboard.css
-		title Dashboard
+		title Store
 		include ../public/partials/loggedinHeader
 	div#main
 		nav(class='product-filter')
@@ -17,6 +17,7 @@ html
 				select 
 					option(value='/') Featured
 		div(class='products')
+			p #{query}
 			each product in products
 				div(class='product-card')
 					div(class='product-image')

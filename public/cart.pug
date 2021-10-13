@@ -18,6 +18,6 @@ div#main
 			form(method='POST' action='/products/'+item.id+'/remove')
 				input(type='submit',name='submit',value='remove')
 				br
-		form(method='POST' action='/order/submit')
+		form(method='POST' action='/submit')
 			p #{alert}
 			input(type='submit', name='submit', value='Place Order')
