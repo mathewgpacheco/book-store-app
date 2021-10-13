@@ -1,15 +1,30 @@
 html
 	head
+		style 
+			include ../styles/dashboard.css
 		title Dashboard
 		include ../public/partials/loggedinHeader
 	div#main
-		h1 Hello, #{username}
-		each product in products
-			form(method='POST' action='/products/'+product._id+'/add')
-				img(src=product.imgPath alt='img' style='width:100px; height:100px;')
-				br
-				a(href='/products/'+product._id) #{product.title}
-				p price: $#{product.price}
-				input(type='hidden', name='_id', value=product._id)
-				input(type='submit', name='submit', value='add to cart')
-			br
+		nav(class='product-filter')
+			h1 Books 
+			div(class='sort')
+				div(class='collection-sort')
+					label(for='filter') Filter by: 
+				select 
+					option(value='/') All Books
+				div(class='collection-sort')
+					label(for='sort') Sort by: 
+				select 
+					option(value='/') Featured
+		div(class='products')
+			each product in products
+				div(class='product-card')
+					div(class='product-image')
+						img(class='product-img' src=product.imgPath alt='img' style='width:100px; height:100px;')
+					form(method='POST' action='/products/'+product._id+'/add')
+						br
+						div(class='product-info')
+							a(href='/products/'+product._id) #{product.title}
+							p(class='price') price: $#{product.price}
+							input(type='hidden', name='_id', value=product._id)
+							button(type='submit', name='submit', value='submit') Add to cart

@@ -1,6 +1,8 @@
 
 html
 head
+	style 
+		include ../styles/dashboard.css
 	title View Orders
 	include ../public/partials/loggedinHeader
 div#main
@@ -10,7 +12,7 @@ div#main
 			p No orders placed.
 	else
 		- for(var i =0;i<result.orders.length;i++){
-			p Order #: #{result.orders[i].id+1}
+			p Order ID(#): #{result.orders[i].id+1}
 			- for(var j =0;j<result.orders[i].products.length;j++){
 				a(href='/products/'+result.orders[i].products[j]._id._id) #{result.orders[i].products[j]._id.title}
 				br

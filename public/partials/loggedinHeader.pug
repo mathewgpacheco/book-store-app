@@ -1,21 +1,21 @@
-#divheader
-	a(href='/user/'+username+'/dashboard') Shop
-	|
-	|
-	a(href='/order/cart') View Cart
-	|
-	|
-	a(href='/order/viewOrders') View Orders
-	|
-	|
-	form(method='POST' action='/user/logout')
-		input(type='submit' name='submit' value='Logout')
-		br
-	form(method='POST' action='/products/product')
-		br
-		label(for ='Search') Search for a book
-		br
-		input(type = 'text', name = 'param')
-		br
-		input(type = 'submit', name='submit',value='Submit')
-		br 
+div#header
+	div(class='top')
+		h1 eBookShop 
+		|
+		|
+		form(method='POST' action='/products/product')
+			br
+			input(type = 'text', name = 'param' placeholder='Search')
+		div(class='nav-bar')
+			a(href='/user/'+username+'/dashboard') Shop
+			|
+			|
+			a(href='/order/cart') Cart
+			|
+			|
+			a(href='/order/viewOrders') My Orders
+			|
+			|
+			a(href='/user/'+username+'/profile') My Account
+		form(method='POST' action='/user/logout')
+			button(type='submit', name='submit', value='submit') Logout

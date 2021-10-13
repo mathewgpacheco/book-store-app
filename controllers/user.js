@@ -16,7 +16,7 @@ function register(req,res,next){
 
         if(result){
             console.log('username already exists');
-            return res.redirect('/');
+            return res.render('../public/index.pug',{alert: 'Username already exists.'});
         }
         if(!result){
             const user = new User({
@@ -60,7 +60,7 @@ function login(req,res,next){
             .then(validated =>{
                 if(!validated){
                     console.log('wrong password');
-                    return res.redirect('/');
+                    return res.render('../public/index.pug',{alert: 'Incorrect Password'});
                 }
                 console.log('Log in success');
                 let user = {
@@ -76,7 +76,7 @@ function login(req,res,next){
             })
         }
         else {
-            return res.status(404).send("Username does not exist");
+            return res.render('../public/index.pug',{alert: 'Username does not exist'});
         }
     })
     return;
