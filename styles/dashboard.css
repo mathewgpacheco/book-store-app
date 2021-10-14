@@ -185,12 +185,30 @@ body, html {
 }
 
 .product-card button{
+  background-color: transparent;
   border: none;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1px solid black; 
   outline: 0;
   margin: auto;
   color: black;
   width: 100px;
   padding: 10px 10px;
   position: relative;
+  font-size: 10px;
+  font-family: Helvetica;
 
+}
+
+.product-card button:hover::before {
+  transform: scale(1.1);
+  background-color: 0 0 15px lightblue;
+  border: 1px solid lightblue; 
+}
+
+.product-card button:hover {
+  color: lightblue;
+  background-color: 0 0 5px lightblue;
+  border: 1px solid lightblue; 
 }
