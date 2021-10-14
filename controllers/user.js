@@ -38,7 +38,6 @@ function register(req,res,next){
                         expiresIn: '1h'
                     });
                     req.session.token = token;
-                    req.session.cart = [];
                     return res.redirect('/user/'+usr.username+'/store');
             })
         }
@@ -73,7 +72,6 @@ function login(req,res,next){
                         expiresIn: '1h'
                     });
                 req.session.token = token;
-                req.session.cart = [];
                 return res.redirect('/user/'+user.username+'/store');
             })
         }
@@ -95,11 +93,18 @@ function logout(req,res,next){
 
 }
 
-async function store(req,res,next){
-    let user = req.user;
+function store(req,res,next){
+    let id = req.user._id;
     let products = req.products;
-    const result = await User.findOne({_id: user._id});
-    return res.render('../public/dashboard.pug', {username: result.username, products: products});
+    for(let i =0;i<req.session.cart.length;i++){
+        console.log(req.session.cart[i].title);
+    }
+    User 
+    .findOne({_id: id})
+    .exec()
+    .then(result =>{
+        return res.render('../public/dashboard.pug', {username: result.username, length: req.session.cart.length,products: products});
+    })
 }
 module.exports = {
     getRegister,

@@ -96,14 +96,14 @@ function getOrders(req,res,next){
     })
     .exec()
     .then(result =>{
-        return res.render('../public/orders.pug',{result: result,username:username});
+        return res.render('../public/orders.pug',{result: result,length: req.session.cart.length, username:username});
     })
 }
 
 //renders current items in a cart to page
 function getCart(req,res,next){
     let cart =req.session.cart;
-    return res.render('../public/cart.pug', {items: cart, username:req.user.username})
+    return res.render('../public/cart.pug', {items: cart, username:req.user.username, length: cart.length})
 }
 
 module.exports ={
