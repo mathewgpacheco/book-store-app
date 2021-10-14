@@ -6,7 +6,7 @@ function getProducts(req,res,next){
     //for now, load 10 random products from the db.
     //will implement recomender system later
     Product
-    .aggregate([{$sample: {size: 10}}])
+    .aggregate([{$sample: {size: 15}}])
     .exec()
     .then(results =>{
         req.products = results;

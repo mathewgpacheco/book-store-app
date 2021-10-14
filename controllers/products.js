@@ -82,7 +82,7 @@ async function findProduct(req,res,next){
         let p = await Product.findOne({_id: r[k].ref}).exec();
         array.push(p);
     }
-    return res.render('../public/dashboard.pug', {username: username, products: array, query:'Your search results for: '+param});
+    return res.render('../public/dashboard.pug', {username: username, products: array, query:'Top results for: '+'"'+param+'"'});
 }
 
 module.exports ={
