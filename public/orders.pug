@@ -8,10 +8,11 @@ head
 	include ../public/partials/loggedinHeader
 div#main
 	div(class='main')
-		p #{username}'s Orders
+		h1 #{username}'s Orders
 	br
 	if result.orders.length== 0
-			p No orders placed.
+		div(class='main')
+			p No orders placed
 	else
 		div(class='order-wrapper')
 			- for(var i =0;i<result.orders.length;i++){

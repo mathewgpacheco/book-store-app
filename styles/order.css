@@ -9,14 +9,25 @@ body, html {
 	font-family: Helvetica, sans-serif;
 }
 
-.main p {
-  text-transform: uppercase;
+.main {
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 10%;
+  font-family: Helvetica, sans-serif;
+  background-color: white;
+  display: grid;
+  padding: 10px;
+  font-size: 15px;
+  color: black;
+  margin: 0 auto; 
+  text-align: center;
+}
+.main p{
   font-family: Helvetica, sans-serif;
   flex-grow: 1;
   font-size: 20px;
   padding-top: 10px;
-  padding-left: 10%;
-  color: black;
+  color: black; 
 }
 
 .order-wrapper {
