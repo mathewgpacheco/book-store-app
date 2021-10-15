@@ -142,3 +142,14 @@ body, html {
   background-color: 0 0 5px lightblue;
   border: 1px solid lightblue; 
 }
+
+.pagination {
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 15px;
+}
+.pagination a{
+  color: black;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -21,7 +21,7 @@ function initCrawler(){
                 let imgPath = 'https://books.toscrape.com'+ image.substring(2);
                 Product
                 .findOneAndUpdate({title: title}, {$set: {link: link},$set:{imgPath: imgPath}}, {
-                    new: true,
+                    new: false,
                     upsert: true
                   })
                 .then(result=>{

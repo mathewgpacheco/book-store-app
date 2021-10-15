@@ -38,6 +38,7 @@ const productSchema = new Schema({
     }
 
 });
+
 productSchema.pre('save', async function(next){
     const product = this;
     //random value between 1 and 10

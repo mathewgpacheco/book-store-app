@@ -10,6 +10,6 @@ router.get('/register',userController.getRegister);
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/logout',userController.logout);
-router.get('/:userID/store/', userMiddleware.authenticateToken,productMiddleware.getProducts, orderMiddleware.existCart, userController.store);
+router.get('/:userID/store/:pageID', userMiddleware.authenticateToken,productMiddleware.getProducts, orderMiddleware.existCart, userController.store);
 
 module.exports = router;

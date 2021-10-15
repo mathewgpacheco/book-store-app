@@ -38,7 +38,7 @@ function register(req,res,next){
                         expiresIn: '1h'
                     });
                     req.session.token = token;
-                    return res.redirect('/user/'+usr.username+'/store');
+                    return res.redirect('/user/'+usr.username+'/store/1');
             })
         }
     })
@@ -72,7 +72,7 @@ function login(req,res,next){
                         expiresIn: '1h'
                     });
                 req.session.token = token;
-                return res.redirect('/user/'+user.username+'/store');
+                return res.redirect('/user/'+user.username+'/store/1');
             })
         }
         else {
@@ -94,6 +94,7 @@ function logout(req,res,next){
 }
 
 function store(req,res,next){
+    console.log(req.pageID);
     let id = req.user._id;
     let products = req.products;
     if(req.session.cart.length ==0 ){
@@ -109,7 +110,7 @@ function store(req,res,next){
     .findOne({_id: id})
     .exec()
     .then(result =>{
-        return res.render('../public/dashboard.pug', {username: result.username, length: req.session.cart.length,products: products});
+        return res.render('../public/dashboard.pug', {username: result.username,max: req.max, current: req.pageID,length: req.session.cart.length,products: products});
     })
 }
 module.exports = {

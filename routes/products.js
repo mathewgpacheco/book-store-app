@@ -9,6 +9,6 @@ const productMiddleware = require('../middleware/products');
 router.post('/:productID/add', userMiddleware.authenticateToken, orderMiddleware.existCart, productMiddleware.product,productController.add, productController.redirect);
 router.post('/:productID/remove', userMiddleware.authenticateToken,productMiddleware.product, productController.remove);
 router.get('/:productID/', userMiddleware.authenticateToken, productMiddleware.product, productController.getProduct);
-router.post('/product', userMiddleware.authenticateToken,productController.findProduct);
+router.post('/results', userMiddleware.authenticateToken,productController.findProduct);
 router.post('/:productID/review', userMiddleware.authenticateToken, productMiddleware.product,reviewController.addReview);
 module.exports = router;
