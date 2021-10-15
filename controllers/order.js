@@ -49,15 +49,42 @@ function processOrder(req,res,next){
 async function addOrder(req,res,next){
     let cart = req.session.cart;
     let size = await Order.count();
+    let total= 0;
+    let subtotal;
+    let tax;
+
+    for(let i =0;i< cart.length;i++){
+        total = total + cart[i].price;
+    }
+
+    subtotal = total;
+    tax = total * 0.13;
+    total = total * 1.13;
+
+    let t =total.toString();
+    let tformat = parseFloat(t).toFixed(2);
+
+    
+    let s = subtotal.toString();
+    let sformat = parseFloat(s).toFixed(2);
+
+    
+    let ta =tax.toString();
+    let taformat = parseFloat(ta).toFixed(2);
+
     const order = new Order({
         id: parseInt(size),
-        products: []
+        products: [],
+        subtotal: sformat,
+        tax:  taformat,
+        total: tformat
     })
-
+    
     for(let i =0;i<cart.length;i++){
         order.products.push({
             _id: cart[i].id,
-            quantity: cart[i].quantity
+            quantity: cart[i].quantity,
+
         })
     }
     
@@ -103,7 +130,30 @@ function getOrders(req,res,next){
 //renders current items in a cart to page
 function getCart(req,res,next){
     let cart =req.session.cart;
-    return res.render('../public/cart.pug', {items: cart, username:req.user.username, length: cart.length})
+    let total= 0;
+    let subtotal;
+    let tax;
+
+    for(let i =0;i< cart.length;i++){
+        total = total + cart[i].price;
+    }
+
+    subtotal = total;
+    tax = total * 0.13;
+    total = total * 1.13;
+
+    let t =total.toString();
+    let tformat = parseFloat(t).toFixed(2);
+
+    
+    let s = subtotal.toString();
+    let sformat = parseFloat(s).toFixed(2);
+
+    
+    let ta =tax.toString();
+    let taformat = parseFloat(ta).toFixed(2);
+
+    return res.render('../public/cart.pug', {subtotal: sformat,tax: taformat, total: tformat,items: cart, username:req.user.username, length: cart.length})
 }
 
 module.exports ={

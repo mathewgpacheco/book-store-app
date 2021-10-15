@@ -19,7 +19,7 @@ function addReview(req,res,next){
 
     User
     .findOneAndUpdate({_id: id}, {$push: {reviews: review}}).exec();
-    return res.redirect('/user/'+username+'/store');
+    return res.redirect('/products/'+productID);
 }
 
 module.exports ={

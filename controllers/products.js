@@ -17,6 +17,7 @@ function add(req,res,next){
         let data = { 
             title: product.title,
             imgPath: product.imgPath,
+            price: product.price,
             id: mongoose.Types.ObjectId(product._id),
             quantity: 1
         }

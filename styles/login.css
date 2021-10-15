@@ -89,3 +89,8 @@ a:hover {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+.about p {
+  font-size: 15px;
+  color:black;
+}

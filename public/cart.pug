@@ -2,22 +2,37 @@
 html
 head
 	style 
-		include ../styles/dashboard.css
+		include ../styles/cart.css
+		include ../styles/header.css
 	title View Cart
 	include ../public/partials/loggedinHeader
 div#main
-	h1 Cart
-	br
-	if items.length== 0
+	div(class='h1')
+		h1 Cart
+		br
+		if items.length== 0
 			p No products in cart
-	else 
-		each item in items
-			img(src=item.imgPath alt='img' style='width:100px; height:100px;')
-			p  #{item.title} 
-			p QTY: #{item.quantity}
-			form(method='POST' action='/products/'+item.id+'/remove')
-				input(type='submit',name='submit',value='remove')
-				br
-		form(method='POST' action='/submit')
-			p #{alert}
-			input(type='submit', name='submit', value='Place Order')
+		else 
+			div(class='p')
+				p Subtotal: $#{subtotal}
+				p Tax: 	$#{tax}
+				p Total: $#{total}
+				form(method='POST' action='/submit')
+					p #{alert}
+					button(type='submit', name='submit', value='submit') PLACE ORDER
+	if items.length > 0
+		div(class='wrapper')
+			each item in items
+				div(class='product-card')
+					div(class='product-info')
+						img(class='product-img' src=item.imgPath alt='img')
+						br
+						a(href='/products/'+item.id) #{item.title} 
+						br
+						p  $ #{item.price}
+						br
+						p QTY: #{item.quantity}
+						br
+						form(method='POST' action='/products/'+item.id+'/remove')
+							button(type='submit', name='submit', value='submit') REMOVE
+							br

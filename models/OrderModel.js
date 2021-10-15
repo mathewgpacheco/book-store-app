@@ -15,6 +15,18 @@ const orderSchema = new Schema({
             type: Number
         }
     }],
+    subtotal: {
+        type: Number,
+        default: 0,
+    },
+    total: {
+        type: Number,
+        default: 0
+    },
+    tax: {
+        type: Number,
+        default: 0,
+    }
 });
 
 

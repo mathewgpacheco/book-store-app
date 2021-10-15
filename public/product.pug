@@ -2,34 +2,52 @@
 html
 head
 	style 
-		include ../styles/dashboard.css
+		include ../styles/product.css
+		include ../styles/header.css
 	title Product
 body
 	include ../public/partials/loggedinHeader
 div#main
 	br
-	p #{product.title}
-	form(method='POST' action='/products/'+product._id+'/add')
-				img(src=product.imgPath alt='img' style='width:100px; height:100px;')
-				p price: $#{product.price}
-				p genres: #{product.genre}
-				p stock: #{product.stock}
-				p Description: coming soon
-				input(type='submit', name='submit', value='add to cart')
-				p Book reviews:
+	div(class='wrapper')
+		div(class='product-card')
+			p #{product.title}
+			div(class='product-img')
+				img(src=product.imgPath alt='img')
+			br
+			p price: $#{product.price}
+			br
+			p genres: #{product.genre}
+			br
+			p stock: #{product.stock}
+			br
+			p Description: coming soon
+			form(method='POST' action='/products/'+product._id+'/add')
+				button(type='submit', name='submit', value='submit') ADD TO CART
+			div(class='add-review')
+				form(method='POST' action='/products/'+product._id+'/review')
+					br
+					p Add a review for this item
+					br
+					p #{alert}
+					textarea(type = 'text', name = 'review', required=true)
+					br
+					br
+					button(type='submit', name='submit', value='submit') ADD REVIEW
+					br 
+		div(class='review-card')
+			p Book reviews:
 				if product.reviews.length == 0
+					br 
+					br
+					br
 					p No reviews yet.
 				else 
-					each review in product.reviews
-						p Review by: #{review.owner.username} 
-						p #{review.description}
-						br
-	form(method='POST' action='/products/'+product._id+'/review')
-		label(for ='Create') Add a review for this item
-		br
-		p #{alert}
-		input(type = 'text', name = 'review', required=true)
-		br
-		input(type = 'submit', name='submit',value='Add')
-		br 
-	br
+					div(class='review-wrapper')
+						each review in product.reviews
+							div(class='review-area')
+								div(class='review-user')
+									p Review by: #{review.owner.username} 
+								div(class='review-desc')
+									p #{review.description}
+									br

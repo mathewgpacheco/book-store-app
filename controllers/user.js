@@ -96,9 +96,15 @@ function logout(req,res,next){
 function store(req,res,next){
     let id = req.user._id;
     let products = req.products;
-    for(let i =0;i<req.session.cart.length;i++){
-        console.log(req.session.cart[i].title);
+    if(req.session.cart.length ==0 ){
+        console.log('Cart is empty');
     }
+    if(req.session.cart.length ==0 ){
+        for(let i =0;i<req.session.cart.length;i++){
+            console.log(req.session.cart[i].title);
+        }
+    }
+
     User 
     .findOne({_id: id})
     .exec()

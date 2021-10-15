@@ -2,24 +2,38 @@
 html
 head
 	style 
-		include ../styles/dashboard.css
+		include ../styles/header.css
+		include ../styles/order.css
 	title View Orders
 	include ../public/partials/loggedinHeader
 div#main
-	h1 Orders
+	div(class='main')
+		p #{username}'s Orders
 	br
 	if result.orders.length== 0
 			p No orders placed.
 	else
-		- for(var i =0;i<result.orders.length;i++){
-			p Order ID(#): #{result.orders[i].id+1}
-			- for(var j =0;j<result.orders[i].products.length;j++){
-				a(href='/products/'+result.orders[i].products[j]._id._id) #{result.orders[i].products[j]._id.title}
-				br
-				img(src=result.orders[i].products[j]._id.imgPath alt='img' style='width:100px; height:100px;')
-				p Price: $#{result.orders[i].products[j]._id.price}
-				p Quantity: #{result.orders[i].products[j].quantity}
-			- }
-			br
-			br
-		- }
+		div(class='order-wrapper')
+			- for(var i =0;i<result.orders.length;i++){
+				div(class='product-card')
+					div(class='order-info')
+						p Order ID(#):  #{result.orders[i].id+1}
+						br
+						p Subtotal: $ #{result.orders[i].subtotal}
+						br
+						p tax: $ #{result.orders[i].tax}
+						br
+						p total: $ #{result.orders[i].total}
+						br
+					- for(var j =0;j<result.orders[i].products.length;j++){
+						div(class='product-info')
+							br
+							img(src=result.orders[i].products[j]._id.imgPath alt='img')
+							br
+							a(href='/products/'+result.orders[i].products[j]._id._id) #{result.orders[i].products[j]._id.title}
+							br
+							p Quantity: #{result.orders[i].products[j].quantity}
+							br
+							p Price: $#{result.orders[i].products[j]._id.price}
+					- }
+				- }

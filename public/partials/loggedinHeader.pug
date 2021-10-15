@@ -15,7 +15,7 @@ div#header
 			|
 			a(href='/user/'+username+'/best') Best Sellers
 			|
-			|
+			|	
 			a(href='/user/'+username+'/cart') Cart (#{length})
 			|
 			|
@@ -23,5 +23,6 @@ div#header
 			|
 			|
 			a(href='/user/'+username+'/profile') My Account
+	div(class='logout')
 		form(method='POST' action='/user/logout')
 			button(type='submit', name='submit', value='submit') Logout
