@@ -114,7 +114,7 @@ grid-template-columns: 1fr 1fr;
 
   .add-review{
     max-width: 100%;
-    height: 50%;
+    height: 100px;
   }
   .add-review p {
     color: black;
@@ -128,10 +128,10 @@ grid-template-columns: 1fr 1fr;
 
   
   .add-review textarea {
-    max-width: 100%;
+    max-width: 75%;
     margin: 0 auto;
     width: 600px;
-    height: 50%;
+    height: 200px;
     padding: 12px 20px;
     margin: 0px 0;
     box-sizing: border-box;
