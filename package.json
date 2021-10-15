@@ -24,6 +24,7 @@
     "elasticlunr": "^0.9.5",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "faker": "^5.5.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.7",
     "path": "^0.12.7",

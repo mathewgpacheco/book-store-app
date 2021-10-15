@@ -15,13 +15,17 @@ div#main
 			div(class='product-img')
 				img(src=product.imgPath alt='img')
 			br
+			p by: #{product.author}
+			br
 			p price: $#{product.price}
 			br
 			p genres: #{product.genre}
 			br
 			p stock: #{product.stock}
 			br
-			p Description: coming soon
+			div(class='product-desc')
+				h1 Description: 
+				p #{product.description}
 			form(method='POST' action='/products/'+product._id+'/add')
 				button(type='submit', name='submit', value='submit') ADD TO CART
 			div(class='add-review')
@@ -36,18 +40,20 @@ div#main
 					button(type='submit', name='submit', value='submit') ADD REVIEW
 					br 
 		div(class='review-card')
-			p Book reviews:
-				if product.reviews.length == 0
-					br 
-					br
-					br
+			div(class='review-h1')
+				h1 product reviews:
+			if product.reviews.length == 0
+				br 
+				br
+				br
+				div(class='review-none')
 					p No reviews yet.
-				else 
-					div(class='review-wrapper')
-						each review in product.reviews
-							div(class='review-area')
-								div(class='review-user')
-									p Review by: #{review.owner.username} 
-								div(class='review-desc')
-									p #{review.description}
-									br
+			else 
+				div(class='review-wrapper')
+					each review in product.reviews
+						div(class='review-area')
+							div(class='review-user')
+								p Review by: #{review.owner.username} 
+							div(class='review-desc')
+								p #{review.description}
+								br

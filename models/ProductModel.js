@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const  Schema = mongoose.Schema; 
+const faker = require('faker');
 
 const productSchema = new Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+    },
+    author: {
+        type: String
     },
     title: {
         type: String,
@@ -28,10 +32,12 @@ const productSchema = new Schema({
     reviews:[{type: mongoose.SchemaTypes.ObjectId, ref: 'Review'}],
     genre: {
         type: String
+    },
+    description:{
+        type: String,
     }
 
 });
-
 productSchema.pre('save', async function(next){
     const product = this;
     //random value between 1 and 10
@@ -86,7 +92,9 @@ productSchema.pre('save', async function(next){
     "Cultural",
     "Erotica",
     "Crime"];
-
+    this.author = faker.lorem.words(2);
+    this.description = faker.lorem.paragraph();
+    this.price = (Number.parseFloat((Math.random() * (20- 7 + 1)) + 7)).toFixed(2);
     this.genre = (genres[Math.floor(Math.random() * genres.length)]);
     next();
 })

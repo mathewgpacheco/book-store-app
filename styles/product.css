@@ -39,6 +39,17 @@ grid-template-columns: 1fr 1fr;
     padding: 30px;
 }
 
+.product-desc h1{
+  padding-left: 18px;
+  text-align: left;
+  font-size: 17px;
+}
+.product-desc p {
+  text-align: left;
+  padding: 20px;
+  font-size: 13px;
+}
+
 .product-card button{
     background-color: transparent;
     border: none;
@@ -55,7 +66,19 @@ grid-template-columns: 1fr 1fr;
     font-family: Helvetica;
   
   }
-
+.review-none{
+  text-align: center;
+  margin: 0 auto;
+  padding-left: 50px;
+}
+.review-card h1{
+  margin: 0 auto;
+  padding-left: 50px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 17px;
+  
+}
   .review-card{
     padding: 20px;
     max-width: 100%;
@@ -87,7 +110,6 @@ grid-template-columns: 1fr 1fr;
   }
 
   .review-area{
-      border: 1px solid black;
       font-family: Helvetica, sans-serif;
       
   }
@@ -98,13 +120,12 @@ grid-template-columns: 1fr 1fr;
     text-decoration: none;
     letter-spacing: 0.15em;
     font-size: 13px;
-    padding: 15px 10px;
+    padding: 0px 10px;
   }
 
   .review-desc{
     color: black;
     text-align: left;
-    text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 0.15em;
     font-size: 13px;
@@ -119,7 +140,6 @@ grid-template-columns: 1fr 1fr;
   .add-review p {
     color: black;
     text-align: left;
-    text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 0.15em;
     font-size: 13px;
@@ -131,7 +151,7 @@ grid-template-columns: 1fr 1fr;
     max-width: 75%;
     margin: 0 auto;
     width: 600px;
-    height: 200px;
+    height: 180px;
     padding: 12px 20px;
     margin: 0px 0;
     box-sizing: border-box;
