@@ -31,8 +31,9 @@ function add(req,res,next){
 
 function redirect(req,res,next){
     let username = req.user.username;
+    let pageID = req.pageID;
     console.log('Item added. Cart length: '+req.session.cart.length);
-    return res.redirect('/user/'+username+'/store');
+    return res.redirect('/user/'+username+'/store/'+pageID);
 }
 function remove(req,res,){
     let toRemove = req.productID;

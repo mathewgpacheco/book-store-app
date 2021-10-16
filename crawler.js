@@ -20,12 +20,14 @@ function initCrawler(){
                 const image = $(book).find('.image_container a img').attr('src'); 
                 let imgPath = 'https://books.toscrape.com'+ image.substring(2);
                 Product
-                .findOneAndUpdate({title: title}, {$set: {link: link},$set:{imgPath: imgPath}}, {
-                    new: false,
-                    upsert: true
-                  })
+                .create({
+                  _id: mongoose.Types.ObjectId(),
+                  title: title,
+                  link: link,
+                  imgPath: imgPath
+                })
                 .then(result=>{
-                    console.log('Adding/updating book: '+result.title);
+                    console.log('Adding book: '+result.title);
                     result.save();
                 })
                 .catch(function(err){

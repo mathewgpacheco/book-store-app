@@ -101,9 +101,9 @@ async function addOrder(req,res,next){
 function clearOrder(req,res,next){
     if(req.session.cart.length !=0 || !req.session.cart){
         req.session.cart = [];
-        return res.redirect(201,'/user/'+req.user.username+'/store');
+        return res.redirect(201,'/user/'+req.user.username+'/store/1');
     }
-    return res.redirect(201,'/user/'+req.user.username+'/store');
+    return res.redirect(201,'/user/'+req.user.username+'/store/1');
 }
 
 //lists all orders a user has made

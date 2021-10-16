@@ -15,7 +15,6 @@ function register(req,res,next){
     .then(result=>{
 
         if(result){
-            console.log('username already exists');
             return res.render('../public/index.pug',{alert: 'Username already exists.'});
         }
         if(!result){
@@ -28,7 +27,6 @@ function register(req,res,next){
             user
             .save()
             .then( result =>{
-                console.log('user created');
                 let usr = {
                     _id: result._id,
                     username: result.username
@@ -59,10 +57,8 @@ function login(req,res,next){
             validatePassword(password)
             .then(validated =>{
                 if(!validated){
-                    console.log('wrong password');
                     return res.render('../public/index.pug',{alert: 'Incorrect Password'});
                 }
-                console.log('Log in success');
                 let user = {
                     _id: result._id,
                     username: result.username
@@ -87,14 +83,12 @@ function logout(req,res,next){
         if(err) {
             throw err;
         }
-        console.log('log out success');
         return res.redirect('/');
     })
 
 }
 
 function store(req,res,next){
-    console.log(req.pageID);
     let id = req.user._id;
     let products = req.products;
     if(req.session.cart.length ==0 ){
