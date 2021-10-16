@@ -9,20 +9,21 @@ html
 		nav(class='product-filter')
 			h1 Books 
 			div(class='sort')
-				div(class='collection-sort')
-					label(for='filter') Filter by: 
-				select 
-					option(value='/') All Books
-					each genre in genres 
-						option(value='/') #{genre}
-				div(class='collection-sort')
-					label(for='sort') Sort by: 
-				select 
-					option(value='/') All
-					br
-					option(value='/') Best Selling
-					br
-					option(value='/') Most Reviews
+				if (typeof genres !== 'undefined' && genres)
+					div(class='collection-sort')
+							label(for='filter') Filter by: 
+								select 
+									option(value='/') All Books
+									each genre in genres 
+										option(value='/') #{genre}
+					div(class='collection-sort')
+						label(for='sort') Sort by: 
+							select 
+								option(value='/') All
+								br
+								option(value='/') Best Selling
+								br
+								option(value='/') Most Reviews
 		div(class='alert')
 			br
 			p #{query}
@@ -41,30 +42,30 @@ html
 						hidden()
 						button(type='submit', name='pageID', value=current) ADD TO CART
 	div(class='pagination')
-		if current - 1 > 0 && !(current + 1 == max || current == max)
-			a(href='/user/'+username+'/store/'+ (current - 1)) #{current-1}
-			| 
-			|
-			a(href='/user/'+username+'/store/'+ (current)) #{current}
-			|
-			|
-			a(href='/user/'+username+'/store/'+ (current + 1)) #{current + 1}
-
-		if current - 1 <= 0
-			a(href='/user/'+username+'/store/'+ (current)) #{current}
-			|
-			|
-			a(href='/user/'+username+'/store/'+ (current + 1)) #{current + 1}
-		if current + 1 == max 
-			a(href='/user/'+username+'/store/'+ (current - 1)) #{current-1}
-			| 
-			|
-			a(href='/user/'+username+'/store/'+ (current)) #{current}
-			|
-			|
-			a(href='/user/'+username+'/store/'+ (current + 1)) #{current + 1}
-		if current == max 
-			a(href='/user/'+username+'/store/'+ (current - 1)) #{current - 1}
-			|
-			|
-			a(href='/user/'+username+'/store/'+ (current)) #{current}
+		if !isNaN(current)
+			if current - 1 > 0 && !(current + 1 == max || current == max)
+				a(href='/user/'+username+'/store/'+ (current - 1)) #{current-1}
+				| 
+				|
+				a(href='/user/'+username+'/store/'+ (current)) #{current}
+				|
+				|
+				a(href='/user/'+username+'/store/'+ (current + 1)) #{current + 1}
+			if current - 1 <= 0
+				a(href='/user/'+username+'/store/'+ (current)) #{current}
+				|
+				|
+				a(href='/user/'+username+'/store/'+ (current + 1)) #{current + 1}
+			if current + 1 == max 
+				a(href='/user/'+username+'/store/'+ (current - 1)) #{current-1}
+				| 
+				|
+				a(href='/user/'+username+'/store/'+ (current)) #{current}
+				|
+				|
+				a(href='/user/'+username+'/store/'+ (current + 1)) #{current + 1}
+			if current == max 
+				a(href='/user/'+username+'/store/'+ (current - 1)) #{current - 1}
+				|
+				|
+				a(href='/user/'+username+'/store/'+ (current)) #{current}
