@@ -2,6 +2,7 @@ require('dotenv').config();
 const User = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const Product= require('../models/ProductModel');
 
 function getRegister(req,res,next){
     return res.render('../public/register.pug');
@@ -88,23 +89,20 @@ function logout(req,res,next){
 
 }
 
-function store(req,res,next){
+async function store(req,res,next){
     let id = req.user._id;
     let products = req.products;
-    if(req.session.cart.length ==0 ){
-        console.log('Cart is empty');
+    let genres = [];
+    const g = await Product.find({}).select('genre').exec();
+    for (let i=0;i<g.length;i++){
+        genres.push(g[i].genre);
     }
-    if(req.session.cart.length ==0 ){
-        for(let i =0;i<req.session.cart.length;i++){
-            console.log(req.session.cart[i].title);
-        }
-    }
-
+    const unique = Array.from(new Set(genres));
     User 
     .findOne({_id: id})
     .exec()
     .then(result =>{
-        return res.render('../public/dashboard.pug', {username: result.username,max: req.max, current: req.pageID,length: req.session.cart.length,products: products});
+        return res.render('../public/dashboard.pug', {genres: unique,username: result.username,max: req.max, current: req.pageID,length: req.session.cart.length,products: products});
     })
 }
 module.exports = {

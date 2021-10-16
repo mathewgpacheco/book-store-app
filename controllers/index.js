@@ -1,11 +1,11 @@
 
 function home(req,res,next){
-    console.log('landing page');
+    console.log('Landing page');
     return res.render('../public/index.pug',);
 }
 
 function about(req,res,next){
-    console.log('landing page');
+    console.log('About page');
     return res.render('../public/about.pug',);
 }
 

@@ -13,11 +13,16 @@ html
 					label(for='filter') Filter by: 
 				select 
 					option(value='/') All Books
+					each genre in genres 
+						option(value='/') #{genre}
 				div(class='collection-sort')
 					label(for='sort') Sort by: 
 				select 
-					option(value='/') Featured
+					option(value='/') All
 					br
+					option(value='/') Best Selling
+					br
+					option(value='/') Most Reviews
 		div(class='alert')
 			br
 			p #{query}
