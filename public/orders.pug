@@ -2,21 +2,20 @@
 html
 head
 	style 
-		include ../styles/header.css
-		include ../styles/order.css
+		include ../styles/styles.css
 	title View Orders
 	include ../public/partials/loggedinHeader
 div#main
-	div(class='main')
+	div(class='order-main')
 		h1 #{username}'s Orders
 	br
 	if result.orders.length== 0
-		div(class='main')
+		div(class='order-main')
 			p No orders placed
 	else
 		div(class='order-wrapper')
 			- for(var i =0;i<result.orders.length;i++){
-				div(class='product-card')
+				div(class='order-card')
 					div(class='order-info')
 						p Order ID(#):  #{result.orders[i].id+1}
 						br
@@ -27,7 +26,7 @@ div#main
 						p total: $ #{result.orders[i].total}
 						br
 					- for(var j =0;j<result.orders[i].products.length;j++){
-						div(class='product-info')
+						div(class='order-info')
 							br
 							img(src=result.orders[i].products[j]._id.imgPath alt='img')
 							br

@@ -2,15 +2,14 @@
 html
 head
 	style 
-		include ../styles/product.css
-		include ../styles/header.css
+		include ../styles/styles.css
 	title Product
 body
 	include ../public/partials/loggedinHeader
 div#main
 	br
-	div(class='wrapper')
-		div(class='product-card')
+	div(class='product-wrapper')
+		div(class='product')
 			p #{product.title}
 			div(class='product-img')
 				img(src=product.imgPath alt='img')

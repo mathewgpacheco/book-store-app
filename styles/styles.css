@@ -1,0 +1,662 @@
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+}
+
+body, html {
+	font-family: Helvetica, sans-serif;
+}
+
+.product-filter {
+    padding-top: 20px;
+    display: flex
+}
+
+.product-filter h1 {
+    flex-grow: 1;
+    font-size: 30px;
+    padding-left: 20%;
+}
+
+.sort {
+    display: flex;
+    padding-right: 15px;
+}
+
+.collection-sort {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.alert {
+  font-size: 20px;
+  padding-left: 10%;
+}
+
+.products {
+  width: 80%;
+  height: 200%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  row-gap: 1em;
+  column-gap: 10px;
+  padding: 10px;
+  padding-bottom: 40px;
+}
+
+.product-card {
+  background-color: white;
+  display: grid;
+  justify-content: center;
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  line-height: 1;
+  border-radius: 5px;  
+  text-align: center;
+}
+
+.product-info {
+  margin-top: auto;
+  text-align: center;
+}
+
+.product-info img{
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
+}
+
+
+.product-info a{
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 13px;
+  display: inline-block;
+  padding: 15px 10px;
+  position: relative;
+}
+
+.product-info p{
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 13px;
+  display: inline-block;
+  padding: 15px 10px;
+  position: relative;
+}
+
+.product-info a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.product-info a:hover:after{
+  width: 100%; 
+  left: 0; 
+}
+
+
+.pagination {
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 15px;
+}
+.pagination a{
+  color: black;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+button{
+    background-color: transparent;
+    border: none;
+    overflow: hidden;
+    box-shadow: none;
+    border: 1px solid black; 
+    outline: 0;
+    margin: auto;
+    color: black;
+    width: 100px;
+    padding: 10px 10px;
+    position: relative;
+    font-size: 10px;
+    font-family: Helvetica;
+  
+  }
+  
+button:hover::before {
+    transform: scale(1.1);
+    background-color: 0 0 15px lightblue;
+    border: 1px solid lightblue; 
+  }
+  
+button:hover {
+    color: lightblue;
+    background-color: 0 0 5px lightblue;
+    border: 1px solid lightblue; 
+  }
+
+/* CART CSS */
+.cart-wrapper {
+width: 80%;
+height: 125%;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-rows: minmax(100px, auto);
+row-gap: 1em;
+column-gap: 10px;
+padding: 10px;
+padding-bottom: 40px;
+}
+.cart-card {
+  background-color: white;
+  display: grid;
+  justify-content: center;
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  line-height: 1;
+  border-radius: 5px;  
+  text-align: center;
+}
+.cart-info img{
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
+}
+.cart-info p{
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 13px;
+  display: inline-block;
+  padding: 15px 10px;
+  position: relative;
+}
+.cart-info a{
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 13px;
+  display: inline-block;
+  padding: 15px 10px;
+  position: relative;
+}
+.cart-info a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.cart-info a:hover:after{
+  width: 100%; 
+  left: 0; 
+}
+
+
+.cart-h1  {
+  padding-top: 10px;
+  flex-grow: 1;
+  padding-left: 10%;
+  font-family: Helvetica, sans-serif;
+  background-color: white;
+  display: grid;
+  justify-content: center;
+  padding: 10px;
+  font-size: 15px;
+  color: black;
+  line-height: 1;
+  border-radius: 5px; 
+  margin: auto; 
+  text-align: center;
+}
+
+.cart-h1 p {
+  padding: 10px;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+}
+
+
+.left {
+  left: 0;
+  background-color:  #e9faff;
+}
+
+.right {
+  right: 0;
+}
+.left p {
+  font-size: 15px;
+  color: red;
+}
+.split.right img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+a {
+	font-family: OpenSans-Regular;
+	font-size: 18px;
+	color: grey;
+	margin: 3px;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.centered {
+  color: black;
+  position: absolute;
+  font-size: 20px;
+  line-height: 1.7;
+  top: 30%;
+  left: 30%;
+  width: 50%;
+}
+.centered button{
+  margin-top: 20px;
+  width: 100%;
+  font-size:14px;
+  display: inline-block;
+  height: 40px;
+  background-color: lightblue;
+}
+
+.centered h1 {
+  color: black;
+  font-size: 40px;
+}
+
+.centered form {
+  color: black;
+  font-size: 20px;
+}
+
+.centered input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.about p {
+  font-size: 15px;
+  color:black;
+}
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+}
+
+body, html {
+	font-family: Helvetica, sans-serif;
+}
+
+/* ORDER PAGE CSS */
+.order-main {
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 10%;
+  font-family: Helvetica, sans-serif;
+  background-color: white;
+  display: grid;
+  padding: 10px;
+  font-size: 15px;
+  color: black;
+  margin: 0 auto; 
+  text-align: center;
+}
+.order-main p{
+  font-family: Helvetica, sans-serif;
+  flex-grow: 1;
+  font-size: 20px;
+  padding-top: 10px;
+  color: black; 
+}
+.order-card {
+  display: grid;
+  padding: 10px;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  font-size: 15px;
+  color: white;
+  line-height: 1;
+  border: 1px solid black; 
+  text-align: center;
+}
+
+.order-wrapper {
+    margin: 0 auto;
+    display: grid;
+    grid-auto-rows: minmax(100px, auto);
+    row-gap: 1em;
+    column-gap: 10px;
+    padding: 10px;
+    padding-bottom: 40px;
+    
+  }
+  .order-info {
+    margin-top: 0 auto;
+    text-align: center;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+    color: black;
+  }
+  .order-info img{
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .order-info a{
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    font-size: 13px;
+    display: inline-block;
+    padding: 15px 10px;
+    position: relative;
+  }
+
+  .order-info p{
+    margin-top: 0 auto;
+    text-align: center;
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    font-size: 13px;
+    display: inline-block;
+    padding: 15px 10px;
+    position: relative;
+  }
+  
+  .order-info a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: black;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  
+  .order-info a:hover:after{
+    width: 100%; 
+    left: 0; 
+  }
+
+  /*PRODUCT PAGE CSS*/
+  .product-wrapper {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    }
+  
+    .product{ 
+      padding: 20px;
+      max-width: 100%;
+      margin: 0 auto;
+      text-align: center;
+  }
+  
+  .product p{ 
+      color: black;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      font-size: 13px;
+      display: inline-block;
+      padding: 15px 10px;
+      position: relative;
+  }
+  
+  .product img{
+      max-width: 100%;
+      height: auto;
+      padding: 30px;
+  }
+  
+  .product-desc h1{
+    padding-left: 18px;
+    text-align: left;
+    font-size: 17px;
+  }
+  .product-desc p {
+    text-align: left;
+    padding: 20px;
+    font-size: 13px;
+  }
+
+  .review-none{
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 50px;
+  }
+  .review-card h1{
+    margin: 0 auto;
+    padding-left: 50px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 17px;
+    
+  }
+    .review-card{
+      padding: 20px;
+      max-width: 100%;
+      height: 100%;
+      margin: auto;
+      text-align: center;
+    }
+  .review-card p{
+      padding-left: 20px;
+      text-align: left;
+      font-size: 13px;
+      font-family: Helvetica;
+      text-transform: uppercase;
+  }
+    .review-wrapper {
+      width: 100%;
+      height: 90%;
+      margin: 0 auto;
+      display: grid;
+      grid-auto-rows: minmax(100px, auto);
+      row-gap: 1em;
+      column-gap: 10px;
+      padding: 10px;
+      padding-bottom: 40px;
+      row-gap: 1em;
+      padding: 20px;
+      max-width: 100%;
+      margin: auto;
+    }
+  
+    .review-area{
+        font-family: Helvetica, sans-serif;
+        
+    }
+    .review-user{
+      color: black;
+      text-align: left;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      font-size: 13px;
+      padding: 0px 10px;
+    }
+  
+    .review-desc{
+      color: black;
+      text-align: left;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      font-size: 13px;
+      padding: 15px 10px;
+      position: relative;
+    }
+  
+    .add-review{
+      max-width: 100%;
+      height: 100px;
+    }
+    .add-review p {
+      color: black;
+      text-align: left;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      font-size: 13px;
+      padding: 15px 10px;
+    }
+  
+    
+    .add-review textarea {
+      max-width: 75%;
+      margin: 0 auto;
+      width: 600px;
+      height: 180px;
+      padding: 12px 20px;
+      margin: 0px 0;
+      box-sizing: border-box;
+    }
+  
+/* LANDING PAGE CSS*/
+.top {
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-color: lightblue;
+  padding: 8px 15%;
+}
+
+.top h1 {
+  color: white;
+  font-size: 30px;
+}
+.logout{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+.logout button{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1px solid black; 
+  outline: 0;
+  margin: auto;
+  color: black;
+  width: 100px;
+  padding: 10px 10px;
+  font-size: 10px;
+  font-family: Helvetica;
+
+}
+
+.logout button:hover::before {
+  transform: scale(1.1);
+  background-color: 0 0 15px lightblue;
+  border: 1px solid lightblue; 
+}
+
+.logout button:hover {
+  color: lightblue;
+  background-color: 0 0 5px lightblue;
+  border: 1px solid lightblue; 
+}
+
+.top input {
+  width: 60%;
+  padding: 5px 20px;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  
+
+}
+.top a  {
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 15px;
+  display: inline-block;
+  padding: 25px 20px;
+  position: relative;
+}
+
+.top a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.top a:hover:after{
+  width: 100%; 
+  left: 0; 
+}
+
