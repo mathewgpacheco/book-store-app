@@ -1,5 +1,5 @@
 # book-store-app
-A basic eCommerce web application which contains a web crawler, a RESTful server, and a browser-based client that will allow a user to create an account, perform searches, and create orders.
+A basic eCommerce web application which contains a web crawler, a RESTful server, and a browser-based client that will allow a user to create an account, view products, perform searches, and create orders.
 
 Technologies Used: Express, Node, Mongoose, Mongodb, Pug, CSS
 
